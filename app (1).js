@@ -60,7 +60,7 @@ function handleSubmit() {
     showToast('🎉 Welcome to AI Chetan, ' + name + '!');
     setTimeout(() => { window.location.href = 'chat.html'; }, 1500);
   } else {
-    const savedName = localStorage.getItem('ac_user') || 'User';
+    const savedName = localStorage.getItem('ac_user') || 'User'
     closeModal();
     showToast('✅ Welcome back, ' + savedName + '!');
     setTimeout(() => { window.location.href = 'chat.html'; }, 1500);
