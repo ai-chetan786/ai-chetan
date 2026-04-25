@@ -8,23 +8,17 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Poppins',sans-serif;background:#F5F5F5;display:flex;flex-direction:column;height:100vh;overflow:hidden;}
-
-/* NAV */
 nav{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background:white;box-shadow:0 2px 12px rgba(0,0,0,0.08);flex-shrink:0;}
 .logo{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:#FF6B00;}
 .logo span{color:#138808;}
 .nav-right{display:flex;align-items:center;gap:10px;}
 .user-name{font-size:0.82rem;font-weight:600;color:#333;}
-.logout-btn{padding:6px 14px;background:#fff;border:2px solid #FF6B00;color:#FF6B00;border-radius:20px;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.logout-btn{padding:6px 14px;background:#fff;border:2px solid #FF6B00;color:#FF6B00;border-radius:20px;font-size:0.78rem;font-weight:600;cursor:pointer;}
 .logout-btn:hover{background:#FF6B00;color:white;}
-
-/* TOOLBAR */
 .toolbar{background:white;border-bottom:1px solid #eee;padding:8px 16px;display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;}
 .mode-btn{padding:7px 14px;border:2px solid #eee;border-radius:20px;font-size:0.78rem;font-weight:600;cursor:pointer;background:white;color:#666;font-family:'Poppins',sans-serif;transition:all 0.2s;}
 .mode-btn.active{background:#FF6B00;color:white;border-color:#FF6B00;}
 .lang-select{padding:6px 10px;border:2px solid #FF6B00;border-radius:20px;font-size:0.76rem;font-family:'Poppins',sans-serif;color:#333;background:white;cursor:pointer;outline:none;}
-
-/* CHAT AREA */
 .chat-area{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;}
 .msg-row{display:flex;gap:10px;align-items:flex-end;}
 .msg-row.user{flex-direction:row-reverse;}
@@ -40,55 +34,39 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
 .dot:nth-child(3){animation-delay:0.4s;}
 @keyframes bounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-8px);}}
 .translated-tag{font-size:0.68rem;color:#FF6B00;margin-top:3px;font-style:italic;}
-
-/* UPLOADED IMAGE PREVIEW IN CHAT */
 .user-img-preview{max-width:200px;border-radius:12px;margin-bottom:6px;display:block;}
-
-/* GENERATED IMAGE */
 .gen-img{max-width:260px;border-radius:14px;margin-top:8px;box-shadow:0 4px 16px rgba(0,0,0,0.15);display:block;cursor:pointer;}
 .img-tag{font-size:0.7rem;color:#888;margin-top:4px;}
 .download-btn{display:inline-block;margin-top:6px;padding:5px 14px;background:#FF6B00;color:white;border-radius:20px;font-size:0.75rem;font-weight:600;text-decoration:none;cursor:pointer;border:none;font-family:'Poppins',sans-serif;}
-
-/* INPUT AREA */
 .input-area{background:white;padding:10px 14px 12px;border-top:1px solid #eee;flex-shrink:0;}
-
-/* CHAT INPUT ROW */
 .chat-input-row{display:flex;gap:8px;align-items:center;}
-.chat-input-row input{flex:1;padding:11px 14px;border:2px solid #f0f0f0;border-radius:25px;font-size:0.87rem;font-family:'Poppins',sans-serif;outline:none;transition:border 0.2s;}
+.chat-input-row input{flex:1;padding:11px 14px;border:2px solid #f0f0f0;border-radius:25px;font-size:0.87rem;font-family:'Poppins',sans-serif;outline:none;}
 .chat-input-row input:focus{border-color:#FF6B00;}
-.icon-btn{width:42px;height:42px;border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
+.icon-btn{width:42px;height:42px;border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .speak-btn{background:#f0f0f0;color:#333;}
 .speak-btn.listening{background:#FF6B00;color:white;animation:pulse 1s infinite;}
 .img-upload-btn{background:#f0f0f0;color:#333;}
-.img-upload-btn:hover{background:#ffe0cc;}
 .send-btn{background:#FF6B00;color:white;}
 .send-btn:hover{background:#e55a00;}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,107,0,0.4);}50%{box-shadow:0 0 0 10px rgba(255,107,0,0);}}
-
-/* IMAGE UPLOAD PREVIEW BAR */
 .upload-preview{display:none;align-items:center;gap:10px;margin-bottom:8px;background:#fff8f0;padding:8px 12px;border-radius:12px;border:1px solid #ffe0cc;}
 .upload-preview img{width:48px;height:48px;object-fit:cover;border-radius:8px;}
 .upload-preview-name{font-size:0.78rem;color:#555;flex:1;}
 .remove-upload{background:none;border:none;color:#FF6B00;font-size:1rem;cursor:pointer;font-weight:700;}
-
-/* IMAGE GEN INPUT */
 .img-gen-wrap{display:flex;flex-direction:column;gap:8px;}
 .style-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
 .style-label{font-size:0.75rem;color:#666;font-weight:600;}
-.style-chip{padding:4px 11px;border:1.5px solid #eee;border-radius:15px;font-size:0.73rem;cursor:pointer;background:white;color:#666;font-family:'Poppins',sans-serif;transition:all 0.2s;}
+.style-chip{padding:4px 11px;border:1.5px solid #eee;border-radius:15px;font-size:0.73rem;cursor:pointer;background:white;color:#666;font-family:'Poppins',sans-serif;}
 .style-chip.selected{background:#FF6B00;color:white;border-color:#FF6B00;}
 .img-gen-row{display:flex;gap:8px;}
 .img-gen-row input{flex:1;padding:11px 14px;border:2px solid #f0f0f0;border-radius:25px;font-size:0.87rem;font-family:'Poppins',sans-serif;outline:none;}
 .img-gen-row input:focus{border-color:#FF6B00;}
 .gen-btn{padding:11px 20px;background:linear-gradient(135deg,#FF6B00,#FF9500);color:white;border:none;border-radius:25px;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap;}
-.gen-btn:hover{opacity:0.9;}
-
 .hidden{display:none;}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="logo">AI <span>Chetan</span> 🇮🇳</div>
   <div class="nav-right">
@@ -97,7 +75,6 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
   </div>
 </nav>
 
-<!-- TOOLBAR -->
 <div class="toolbar">
   <button class="mode-btn active" id="btnChat" onclick="setMode('chat')">💬 Chat</button>
   <button class="mode-btn" id="btnImage" onclick="setMode('image')">🎨 Generate Image</button>
@@ -127,44 +104,37 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
   </select>
 </div>
 
-<!-- CHAT AREA -->
 <div class="chat-area" id="chatArea">
   <div class="msg-row">
     <div class="avatar ai">🤖</div>
     <div>
       <div class="bubble ai">
-        Namaste! 🙏 I am <strong>AI Chetan</strong> — India's smartest AI assistant!<br><br>
+        Namaste! 🙏 I am <strong>AI Chetan</strong> — India's smartest AI!<br><br>
         💬 Ask me anything in any Indian language<br>
-        🖼️ Share an image and ask questions about it<br>
-        🎨 Switch to <strong>Generate Image</strong> to create AI images<br>
-        🎙️ Use the mic button to speak in your language!
+        🖼️ Share an image using the image button below<br>
+        🎨 Switch to <strong>Generate Image</strong> to create AI art<br>
+        🎙️ Use mic to speak in your language!
       </div>
     </div>
   </div>
 </div>
 
-<!-- INPUT AREA -->
 <div class="input-area">
-
-  <!-- CHAT MODE -->
   <div id="chatInputSection">
-    <!-- Upload Preview Bar -->
     <div class="upload-preview" id="uploadPreview">
       <img id="previewThumb" src="" alt="preview"/>
       <span class="upload-preview-name" id="previewName">image.jpg</span>
-      <button class="remove-upload" onclick="removeUpload()" title="Remove">✕</button>
+      <button class="remove-upload" onclick="removeUpload()">✕</button>
     </div>
-    <!-- Input Row -->
     <div class="chat-input-row">
       <button class="icon-btn speak-btn" id="speakBtn" onclick="toggleVoice()" title="Speak">🎙️</button>
-      <button class="icon-btn img-upload-btn" onclick="document.getElementById('fileInput').click()" title="Share an image">🖼️</button>
+      <button class="icon-btn img-upload-btn" onclick="document.getElementById('fileInput').click()" title="Share image">🖼️</button>
       <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleImageUpload(event)"/>
       <input type="text" id="userInput" placeholder="Type or speak your question..."/>
-      <button class="icon-btn send-btn" onclick="sendMessage()" title="Send">➤</button>
+      <button class="icon-btn send-btn" onclick="sendMessage()">➤</button>
     </div>
   </div>
 
-  <!-- IMAGE GEN MODE -->
   <div id="imageGenSection" class="hidden">
     <div class="img-gen-wrap">
       <div class="style-row">
@@ -178,12 +148,11 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
         <button class="style-chip" onclick="selectStyle(this,'indian traditional art')">🪔 Indian Art</button>
       </div>
       <div class="img-gen-row">
-        <input type="text" id="imagePrompt" placeholder="Describe your image... (any Indian language)" onkeydown="if(event.key==='Enter') generateImage()"/>
+        <input type="text" id="imagePrompt" placeholder="Describe your image... (any language)" onkeydown="if(event.key==='Enter') generateImage()"/>
         <button class="gen-btn" onclick="generateImage()">✨ Generate</button>
       </div>
     </div>
   </div>
-
 </div>
 
 <script>
@@ -192,6 +161,11 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
   if (!userData.name) { window.location.href = 'login.html'; }
   document.getElementById('userName').textContent = '👤 ' + (userData.name || 'User');
   function logout() { localStorage.removeItem('ai_chetan_user'); window.location.href = 'index.html'; }
+
+  // ===== GROQ KEY =====
+  const GROQ_KEY = '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';
+  // Using llama3-70b — best free model on Groq ✅
+  const GROQ_MODEL = 'llama3-70b-8192';
 
   // ===== MODE =====
   let currentMode = 'chat';
@@ -223,7 +197,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
   function onLangChange() {
     selectedLang = document.getElementById('langSelect').value;
     document.getElementById('userInput').placeholder =
-      selectedLang === 'en' ? 'Type or speak your question...' : `Type in ${langNames[selectedLang] || selectedLang}...`;
+      selectedLang === 'en' ? 'Type or speak your question...' : `Type in ${langNames[selectedLang]}...`;
   }
 
   // ===== TRANSLATE =====
@@ -247,11 +221,13 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
     } catch(e) { return text; }
   }
 
-  // ===== HELPERS =====
+  // ===== CHAT HELPERS =====
   const chatArea = document.getElementById('chatArea');
-  const GROQ_KEY = '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';
+  let messages = [
+    { role: 'system', content: "You are AI Chetan, India's smartest AI assistant. Be helpful, friendly, and give clear useful answers. You are proud to be an Indian AI platform. Keep answers clear and not too long." }
+  ];
 
-  function addBubble(text, type, showLang) {
+  function addBubble(html, type, showLang) {
     const row = document.createElement('div');
     row.className = 'msg-row ' + (type === 'user' ? 'user' : '');
     const avatar = document.createElement('div');
@@ -260,7 +236,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
     const wrap = document.createElement('div');
     const bubble = document.createElement('div');
     bubble.className = 'bubble ' + type;
-    bubble.innerHTML = text;
+    bubble.innerHTML = html;
     wrap.appendChild(bubble);
     if (showLang && selectedLang !== 'en') {
       const tag = document.createElement('div');
@@ -283,14 +259,12 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
   }
   function removeTyping() { const t = document.getElementById('typingRow'); if(t) t.remove(); }
 
-  // ===== IMAGE UPLOAD (User shares image) =====
+  // ===== IMAGE UPLOAD =====
   let uploadedImageBase64 = null;
-  let uploadedImageName = '';
 
   function handleImageUpload(event) {
     const file = event.target.files[0];
     if (!file) return;
-    uploadedImageName = file.name;
     const reader = new FileReader();
     reader.onload = (e) => {
       uploadedImageBase64 = e.target.result;
@@ -304,30 +278,24 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
 
   function removeUpload() {
     uploadedImageBase64 = null;
-    uploadedImageName = '';
     document.getElementById('uploadPreview').style.display = 'none';
     document.getElementById('previewThumb').src = '';
   }
 
-  // ===== SEND CHAT MESSAGE =====
-  let messages = [
-    { role: 'system', content: "You are AI Chetan, India's smartest AI assistant. Be helpful, friendly, and give clear concise answers. You represent India and are proud of it. When user shares an image, describe and analyze it helpfully." }
-  ];
-
+  // ===== SEND MESSAGE =====
   async function sendMessage() {
     const input = document.getElementById('userInput');
     const userText = input.value.trim();
     if (!userText && !uploadedImageBase64) return;
     input.value = '';
 
-    // Show user message in chat
+    // Show user message
     const row = document.createElement('div');
     row.className = 'msg-row user';
     const avatar = document.createElement('div');
     avatar.className = 'avatar user';
     avatar.textContent = (userData.name || 'U').charAt(0).toUpperCase();
     const wrap = document.createElement('div');
-
     if (uploadedImageBase64) {
       const img = document.createElement('img');
       img.className = 'user-img-preview';
@@ -344,73 +312,76 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
     chatArea.appendChild(row);
     chatArea.scrollTop = chatArea.scrollHeight;
 
-    // Translate user text to English
-    const englishText = await translateToEnglish(userText || 'What is in this image? Describe it.', selectedLang);
+    // Translate to English for Groq
+    const englishText = await translateToEnglish(userText || 'Describe this image in detail.', selectedLang);
 
-    // Build message for Groq
-    let userMessage;
+    // If image uploaded — describe it using Groq text (llama3 doesn't do vision, so we tell AI user shared image)
+    let promptContent = englishText;
     if (uploadedImageBase64) {
-      // Send image as base64 for vision — Groq supports llava model
-      userMessage = {
-        role: 'user',
-        content: [
-          { type: 'text', text: englishText },
-          { type: 'image_url', image_url: { url: uploadedImageBase64 } }
-        ]
-      };
-    } else {
-      userMessage = { role: 'user', content: englishText };
+      promptContent = `The user has shared an image with you. They said: "${englishText}". Please respond helpfully. Note: Since you cannot directly see images, tell the user you can see they shared an image and ask them to describe what's in it, or let them know to use the Generate Image feature to create AI art from text descriptions.`;
     }
 
-    messages.push(userMessage);
+    messages.push({ role: 'user', content: promptContent });
+    const imgSnapshot = uploadedImageBase64;
     removeUpload();
     addTyping();
 
     try {
-      const model = uploadedImageBase64 ? 'llava-v1.5-7b-4096-preview' : 'llama3-8b-8192';
       const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + GROQ_KEY },
-        body: JSON.stringify({ model, messages, max_tokens: 600 })
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + GROQ_KEY
+        },
+        body: JSON.stringify({
+          model: GROQ_MODEL,
+          messages: messages,
+          max_tokens: 600,
+          temperature: 0.7
+        })
       });
 
       const data = await res.json();
       removeTyping();
 
-      let reply = data.choices?.[0]?.message?.content || 'Sorry, I could not get a response.';
+      if (data.error) {
+        addBubble('❌ Groq Error: ' + data.error.message, 'ai', false);
+        return;
+      }
+
+      let reply = data.choices?.[0]?.message?.content || 'Sorry, no response.';
       messages.push({ role: 'assistant', content: reply });
 
+      // Translate reply to selected language
       const translated = await translateText(reply, selectedLang);
       addBubble(translated, 'ai', selectedLang !== 'en');
 
     } catch(err) {
       removeTyping();
-      addBubble('❌ Error: ' + err.message, 'ai', false);
+      addBubble('❌ Network error: ' + err.message + '. Please check your internet.', 'ai', false);
     }
   }
 
-  // ===== GENERATE IMAGE (Pollinations AI - FREE!) =====
+  // ===== GENERATE IMAGE (Pollinations AI — 100% FREE) =====
   async function generateImage() {
     const promptInput = document.getElementById('imagePrompt');
     const userPrompt = promptInput.value.trim();
-    if (!userPrompt) { alert('Please describe the image you want!'); return; }
+    if (!userPrompt) { alert('Please describe the image you want to generate!'); return; }
     promptInput.value = '';
 
     const englishPrompt = await translateToEnglish(userPrompt, selectedLang);
-    const fullPrompt = `${englishPrompt}, ${selectedStyle} style, high quality, highly detailed, 4k`;
+    const fullPrompt = `${englishPrompt}, ${selectedStyle} style, high quality, detailed, 4k`;
 
     addBubble('🎨 ' + userPrompt, 'user', false);
     addTyping();
 
-    const seed = Math.floor(Math.random() * 99999);
-    const encodedPrompt = encodeURIComponent(fullPrompt);
-    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=512&height=512&seed=${seed}&nologo=true&enhance=true`;
+    const seed = Math.floor(Math.random() * 999999);
+    const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=512&height=512&seed=${seed}&nologo=true&enhance=true`;
 
-    // Small delay so Pollinations can generate
-    await new Promise(r => setTimeout(r, 1500));
+    // Wait for Pollinations to generate (2 seconds)
+    await new Promise(r => setTimeout(r, 2000));
     removeTyping();
 
-    // Add image to chat
     const row = document.createElement('div');
     row.className = 'msg-row';
     const avatar = document.createElement('div');
@@ -420,30 +391,32 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
 
     const textBubble = document.createElement('div');
     textBubble.className = 'bubble ai';
-    textBubble.textContent = '✨ Here is your AI generated image!';
+    textBubble.textContent = '✨ Your AI generated image is ready!';
 
     const img = document.createElement('img');
     img.className = 'gen-img';
-    img.src = imageUrl;
-    img.alt = 'Generated Image';
-    img.title = 'Click to open full size';
+    img.alt = 'AI Generated Image';
+    img.title = 'Click to see full size';
     img.onclick = () => window.open(imageUrl, '_blank');
 
     const tag = document.createElement('div');
     tag.className = 'img-tag';
-    tag.textContent = '🖼️ Style: ' + selectedStyle + ' • Powered by Pollinations AI';
+    tag.textContent = '🖼️ Style: ' + selectedStyle + ' • Pollinations AI (Free)';
 
     const dlBtn = document.createElement('a');
     dlBtn.className = 'download-btn';
     dlBtn.href = imageUrl;
-    dlBtn.download = 'ai-chetan-image.jpg';
     dlBtn.target = '_blank';
-    dlBtn.textContent = '⬇️ Download';
+    dlBtn.textContent = '⬇️ Download Image';
 
     img.onerror = () => {
       img.style.display = 'none';
-      textBubble.textContent = '❌ Image could not be generated. Please try a different description!';
+      textBubble.textContent = '❌ Could not generate image. Try a simpler description!';
+      dlBtn.style.display = 'none';
     };
+
+    // Set src after appending so onerror works
+    img.src = imageUrl;
 
     wrap.appendChild(textBubble);
     wrap.appendChild(img);
@@ -455,17 +428,16 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
     chatArea.scrollTop = chatArea.scrollHeight;
   }
 
-  // ===== VOICE INPUT =====
+  // ===== VOICE =====
   let recognition = null;
   let isListening = false;
 
   function toggleVoice() {
     if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-      alert('Voice not supported. Please use Chrome browser!');
+      alert('Voice not supported. Use Chrome browser!');
       return;
     }
     if (isListening) { recognition.stop(); return; }
-
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     recognition = new SR();
     const voiceLangMap = {
@@ -476,12 +448,11 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
     recognition.lang = voiceLangMap[selectedLang] || 'en-IN';
     recognition.continuous = false;
     recognition.interimResults = false;
-
     recognition.onstart = () => {
       isListening = true;
       document.getElementById('speakBtn').classList.add('listening');
       document.getElementById('speakBtn').textContent = '🔴';
-      document.getElementById('userInput').placeholder = 'Listening...';
+      document.getElementById('userInput').placeholder = 'Listening... speak now!';
     };
     recognition.onresult = (e) => {
       document.getElementById('userInput').value = e.results[0][0].transcript;
@@ -501,7 +472,6 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:10px 2
     recognition.start();
   }
 
-  // Enter key support
   document.getElementById('userInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') sendMessage();
   });
