@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chat — AI Chetan</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#F5F5F5;height:100vh;display:flex;flex-direction:column;}
+nav{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;background:white;box-shadow:0 2px 8px rgba(0,0,0,0.07);}
+.logo{font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;color:#FF6B00;}
+.logo span{color:#138808;}
+.user-info{display:flex;align-items:center;gap:12px;}
+.user-name{font-size:0.9rem;font-weight:600;color:#444;}
+.btn-logout{background:none;border:1px solid #ddd;padding:6px 16px;border-radius:20px;cursor:pointer;font-size:0.85rem;color:#666;font-family:'Poppins',sans-serif;transition:all 0.3s;}
+.btn-logout:hover{border-color:#FF6B00;color:#FF6B00;}
+
+.chat-container{flex:1;display:flex;flex-direction:column;max-width:800px;width:100%;margin:0 auto;padding:20px;overflow:hidden;}
+.chat-messages{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:16px;padding-bottom:16px;}
+.chat-messages::-webkit-scrollbar{width:4px;}
+.chat-messages::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px;}
+
+.msg-wrap{display:flex;align-items:flex-end;gap:10px;}
+.msg-wrap.user{flex-direction:row-reverse;}
+.avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.avatar.ai{background:#FF6B00;color:white;}
+.avatar.user{background:#138808;color:white;}
+.bubble{padding:12px 16px;border-radius:18px;max-width:75%;font-size:0.92rem;line-height:1.6;}
+.bubble.ai{background:white;color:#1a1a1a;border-radius:18px 18px 18px 4px;box-shadow:0 2px 8px rgba(0,0,0,0.07);}
+.bubble.user{background:#FF6B00;color:white;border-radius:18px 18px 4px 18px;}
+
+.typing{display:flex;gap:4px;padding:14px 16px;background:white;border-radius:18px 18px 18px 4px;box-shadow:0 2px 8px rgba(0,0,0,0.07);width:fit-content;}
+.typing span{width:8px;height:8px;background:#FF6B00;border-radius:50%;animation:bounce 1.2s infinite;}
+.typing span:nth-child(2){animation-delay:0.2s;}
+.typing span:nth-child(3){animation-delay:0.4s;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+
+.welcome-msg{text-align:center;padding:30px 20px;}
+.welcome-msg h2{font-family:'Baloo 2',cursive;font-size:1.6rem;color:#FF6B00;margin-bottom:8px;}
+.welcome-msg p{color:#888;font-size:0.9rem;}
+.suggestions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px;}
+.suggestion{background:white;border:1px solid #FFD0A0;padding:8px 16px;border-radius:20px;font-size:0.82rem;cursor:pointer;color:#FF6B00;font-weight:500;transition:all 0.3s;}
+.suggestion:hover{background:#FF6B00;color:white;}
+
+.input-area{background:white;border-radius:20px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,0.08);margin-top:12px;}
+.voice-bar{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.voice-btn{background:#FF6B00;color:white;border:none;padding:10px 20px;border-radius:25px;cursor:pointer;font-size:0.88rem;font-weight:600;font-family:'Poppins',sans-serif;transition:all 0.3s;display:flex;align-items:center;gap:6px;}
+.voice-btn:hover{background:#e55a00;}
+.voice-btn.listening{background:#e55a00;animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,107,0,0.4);}50%{box-shadow:0 0 0 8px rgba(255,107,0,0);}}
+.voice-status{font-size:0.82rem;color:#888;}
+.input-row{display:flex;gap:10px;}
+textarea{flex:1;border:2px solid #f0f0f0;border-radius:12px;padding:12px 16px;font-size:0.92rem;font-family:'Poppins',sans-serif;resize:none;outline:none;transition:all 0.3s;height:48px;line-height:1.4;}
+textarea:focus{border-color:#FF6B00;}
+.send-btn{background:#FF6B00;color:white;border:none;border-radius:12px;padding:0 20px;cursor:pointer;font-size:1.2rem;transition:all 0.3s;flex-shrink:0;}
+.send-btn:hover{background:#e55a00;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">AI <span>Chetan</span></div>
+  <div class="user-info">
+    <span class="user-name" id="userName">👤 User</span>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </div>
+</nav>
+
+<div class="chat-container">
+  <div class="chat-messages" id="chatMessages">
+    <div class="welcome-msg">
+      <h2>🙏 Namaste! I'm AI Chetan</h2>
+      <p>Ask me anything — Legal, Medical, Tech, or anything else!</p>
+      <div class="suggestions">
+        <div class="suggestion" onclick="sendSuggestion('What are my legal rights as a tenant in India?')">⚖️ Legal Rights</div>
+        <div class="suggestion" onclick="sendSuggestion('What medicine is good for fever?')">🏥 Medicine Help</div>
+        <div class="suggestion" onclick="sendSuggestion('How do I fix a slow computer?')">💻 Tech Support</div>
+        <div class="suggestion" onclick="sendSuggestion('How to file a consumer complaint in India?')">📝 File Complaint</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-area">
+    <div class="voice-bar">
+      <button class="voice-btn" id="voiceBtn" onclick="startVoice()">🎙️ Speak</button>
+      <span class="voice-status" id="voiceStatus">Click to speak in Hindi or English</span>
+    </div>
+    <div class="input-row">
+      <textarea id="userInput" placeholder="Type your question here..." onkeydown="handleKey(event)"></textarea>
+      <button class="send-btn" onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ⚠️ REPLACE WITH YOUR GROQ API KEY
+const GROQ_API_KEY = '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';
+
+// Check login
+const userData = localStorage.getItem('ai_chetan_user');
+if (!userData) { window.location.href = 'login.html'; }
+else {
+  const user = JSON.parse(userData);
+  document.getElementById('userName').textContent = '👤 ' + user.name;
+}
+
+function logout() {
+  localStorage.removeItem('ai_chetan_user');
+  window.location.href = 'index.html';
+}
+
+let messages = [
+  { role: 'system', content: 'You are AI Chetan, a helpful Indian AI assistant. You help with legal questions, medical advice, tech support, and general knowledge. Always be friendly, clear, and helpful. When giving medical advice, always recommend consulting a doctor for serious issues. When giving legal advice, explain Indian laws clearly. Respond in the same language the user uses (Hindi or English).' }
+];
+
+function addMessage(content, role) {
+  const container = document.getElementById('chatMessages');
+  const wrap = document.createElement('div');
+  wrap.className = 'msg-wrap ' + role;
+  const avatar = document.createElement('div');
+  avatar.className = 'avatar ' + role;
+  avatar.textContent = role === 'ai' ? '🤖' : '👤';
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble ' + role;
+  bubble.textContent = content;
+  wrap.appendChild(avatar);
+  wrap.appendChild(bubble);
+  container.appendChild(wrap);
+  container.scrollTop = container.scrollHeight;
+}
+
+function showTyping() {
+  const container = document.getElementById('chatMessages');
+  const typing = document.createElement('div');
+  typing.className = 'msg-wrap';
+  typing.id = 'typing';
+  typing.innerHTML = '<div class="avatar ai">🤖</div><div class="typing"><span></span><span></span><span></span></div>';
+  container.appendChild(typing);
+  container.scrollTop = container.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+}
+
+async function sendMessage() {
+  const input = document.getElementById('userInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMessage(text, 'user');
+  messages.push({ role: 'user', content: text });
+  showTyping();
+  try {
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + GROQ_API_KEY },
+      body: JSON.stringify({ model: 'llama-3.3-70b-versatile', messages: messages, max_tokens: 1000 })
+    });
+    const data = await res.json();
+    const reply = data.choices[0].message.content;
+    removeTyping();
+    addMessage(reply, 'ai');
+    messages.push({ role: 'assistant', content: reply });
+  } catch (err) {
+    removeTyping();
+    addMessage('Sorry, something went wrong. Please try again!', 'ai');
+  }
+}
+
+function sendSuggestion(text) {
+  document.getElementById('userInput').value = text;
+  sendMessage();
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+}
+
+function startVoice() {
+  const btn = document.getElementById('voiceBtn');
+  const status = document.getElementById('voiceStatus');
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    status.textContent = '❌ Use Chrome browser for voice!'; return;
+  }
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SR();
+  recognition.lang = 'en-IN';
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  btn.textContent = '🔴 Listening...';
+  btn.classList.add('listening');
+  status.textContent = '🎤 Speak now...';
+  recognition.onresult = function(e) {
+    const text = e.results[0][0].transcript;
+    document.getElementById('userInput').value = text;
+    status.textContent = '✅ Got it! Press send or Enter';
+    btn.textContent = '🎙️ Speak';
+    btn.classList.remove('listening');
+    sendMessage();
+  };
+  recognition.onerror = function() {
+    status.textContent = '❌ Could not hear. Try again!';
+    btn.textContent = '🎙️ Speak';
+    btn.classList.remove('listening');
+  };
+  recognition.onend = function() {
+    btn.textContent = '🎙️ Speak';
+    btn.classList.remove('listening');
+  };
+  recognition.start();
+}
+</script>
+</body>
+</html>
