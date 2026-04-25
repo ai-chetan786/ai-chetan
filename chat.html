@@ -3,478 +3,479 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Chat — AI Chetan</title>
+<title>AI Chetan — Chat</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Poppins',sans-serif;background:#F5F5F5;display:flex;flex-direction:column;height:100vh;overflow:hidden;}
-nav{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background:white;box-shadow:0 2px 12px rgba(0,0,0,0.08);flex-shrink:0;}
-.logo{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:#FF6B00;}
-.logo span{color:#138808;}
-.nav-right{display:flex;align-items:center;gap:10px;}
-.user-name{font-size:0.82rem;font-weight:600;color:#333;}
-.logout-btn{padding:6px 14px;background:#fff;border:2px solid #FF6B00;color:#FF6B00;border-radius:20px;font-size:0.78rem;font-weight:600;cursor:pointer;}
-.logout-btn:hover{background:#FF6B00;color:white;}
-.toolbar{background:white;border-bottom:1px solid #eee;padding:8px 16px;display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;}
-.mode-btn{padding:7px 14px;border:2px solid #eee;border-radius:20px;font-size:0.78rem;font-weight:600;cursor:pointer;background:white;color:#666;font-family:'Poppins',sans-serif;transition:all 0.2s;}
-.mode-btn.active{background:#FF6B00;color:white;border-color:#FF6B00;}
-.lang-select{padding:6px 10px;border:2px solid #FF6B00;border-radius:20px;font-size:0.76rem;font-family:'Poppins',sans-serif;color:#333;background:white;cursor:pointer;outline:none;}
-.chat-area{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;}
-.msg-row{display:flex;gap:10px;align-items:flex-end;}
-.msg-row.user{flex-direction:row-reverse;}
-.avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
-.avatar.ai{background:#FF6B00;}
-.avatar.user{background:#138808;color:white;font-size:0.78rem;font-weight:700;}
-.bubble{max-width:75%;padding:11px 15px;border-radius:18px;font-size:0.88rem;line-height:1.55;}
-.bubble.ai{background:white;color:#222;border-bottom-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
-.bubble.user{background:#FF6B00;color:white;border-bottom-right-radius:4px;}
-.bubble.typing{display:flex;gap:5px;align-items:center;padding:14px 20px;}
-.dot{width:8px;height:8px;background:#ccc;border-radius:50%;animation:bounce 1.2s infinite;}
-.dot:nth-child(2){animation-delay:0.2s;}
-.dot:nth-child(3){animation-delay:0.4s;}
-@keyframes bounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-8px);}}
-.translated-tag{font-size:0.68rem;color:#FF6B00;margin-top:3px;font-style:italic;}
-.user-img-preview{max-width:200px;border-radius:12px;margin-bottom:6px;display:block;}
-.gen-img{max-width:260px;border-radius:14px;margin-top:8px;box-shadow:0 4px 16px rgba(0,0,0,0.15);display:block;cursor:pointer;}
-.img-tag{font-size:0.7rem;color:#888;margin-top:4px;}
-.download-btn{display:inline-block;margin-top:6px;padding:5px 14px;background:#FF6B00;color:white;border-radius:20px;font-size:0.75rem;font-weight:600;text-decoration:none;cursor:pointer;border:none;font-family:'Poppins',sans-serif;}
-.input-area{background:white;padding:10px 14px 12px;border-top:1px solid #eee;flex-shrink:0;}
-.chat-input-row{display:flex;gap:8px;align-items:center;}
-.chat-input-row input{flex:1;padding:11px 14px;border:2px solid #f0f0f0;border-radius:25px;font-size:0.87rem;font-family:'Poppins',sans-serif;outline:none;}
-.chat-input-row input:focus{border-color:#FF6B00;}
-.icon-btn{width:42px;height:42px;border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.speak-btn{background:#f0f0f0;color:#333;}
-.speak-btn.listening{background:#FF6B00;color:white;animation:pulse 1s infinite;}
-.img-upload-btn{background:#f0f0f0;color:#333;}
-.send-btn{background:#FF6B00;color:white;}
+:root{--orange:#FF6B00;--green:#138808;--dark:#1a1a1a;--light:#F5F5F5;--white:#fff;}
+body{font-family:'Poppins',sans-serif;background:var(--light);height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:var(--white);box-shadow:0 2px 8px rgba(0,0,0,0.08);flex-shrink:0;flex-wrap:wrap;gap:8px;}
+.logo{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:var(--orange);}
+.logo span{color:var(--green);}
+.nav-tabs{display:flex;gap:8px;}
+.tab-btn{padding:7px 16px;border-radius:20px;border:1.5px solid #ddd;background:none;cursor:pointer;font-size:0.82rem;font-family:'Poppins',sans-serif;font-weight:600;color:#666;transition:all 0.3s;}
+.tab-btn.active{background:var(--orange);color:white;border-color:var(--orange);}
+.nav-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.lang-select{padding:6px 10px;border:1.5px solid #ddd;border-radius:20px;font-size:0.8rem;font-family:'Poppins',sans-serif;outline:none;cursor:pointer;background:white;}
+.user-badge{font-size:0.85rem;font-weight:600;color:#444;}
+.btn-logout{background:none;border:1.5px solid #ddd;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:0.8rem;font-family:'Poppins',sans-serif;transition:all 0.3s;}
+.btn-logout:hover{border-color:var(--orange);color:var(--orange);}
+.main{flex:1;display:flex;overflow:hidden;}
+.sidebar{width:230px;background:var(--white);border-right:1px solid #eee;display:flex;flex-direction:column;overflow:hidden;}
+.sidebar-header{padding:12px 16px;font-weight:700;font-size:0.85rem;color:#444;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;}
+.new-chat-btn{background:var(--orange);color:white;border:none;padding:5px 12px;border-radius:12px;font-size:0.78rem;cursor:pointer;font-family:'Poppins',sans-serif;font-weight:600;}
+.history-list{flex:1;overflow-y:auto;padding:8px;}
+.history-item{padding:10px 12px;border-radius:10px;cursor:pointer;font-size:0.82rem;color:#555;transition:all 0.2s;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.history-item:hover,.history-item.active{background:#FFF0E0;color:var(--orange);}
+.history-item.active{font-weight:600;}
+.history-date{font-size:0.72rem;color:#aaa;padding:6px 12px 2px;}
+.chat-area{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.chat-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px;}
+.chat-messages::-webkit-scrollbar{width:4px;}
+.chat-messages::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px;}
+.msg-wrap{display:flex;align-items:flex-start;gap:10px;}
+.msg-wrap.user{flex-direction:row-reverse;}
+.avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0;}
+.avatar.ai{background:var(--orange);color:white;}
+.avatar.user{background:var(--green);color:white;}
+.bubble{padding:12px 16px;border-radius:18px;max-width:72%;font-size:0.9rem;line-height:1.65;}
+.bubble.ai{background:white;color:var(--dark);border-radius:4px 18px 18px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);}
+.bubble.user{background:var(--orange);color:white;border-radius:18px 4px 18px 18px;}
+.bubble img{max-width:100%;border-radius:10px;margin-top:8px;display:block;}
+.typing-wrap{display:flex;align-items:flex-start;gap:10px;}
+.typing{display:flex;gap:5px;padding:14px 16px;background:white;border-radius:4px 18px 18px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);}
+.typing span{width:7px;height:7px;background:var(--orange);border-radius:50%;animation:bounce 1.2s infinite;}
+.typing span:nth-child(2){animation-delay:0.2s;}
+.typing span:nth-child(3){animation-delay:0.4s;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+.welcome{text-align:center;padding:30px 20px;max-width:600px;margin:0 auto;}
+.welcome h2{font-family:'Baloo 2',cursive;font-size:1.8rem;color:var(--orange);margin-bottom:8px;}
+.welcome p{color:#888;font-size:0.9rem;margin-bottom:20px;}
+.suggestions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.suggestion{background:white;border:1.5px solid #FFD0A0;padding:8px 16px;border-radius:20px;font-size:0.8rem;cursor:pointer;color:var(--orange);font-weight:500;transition:all 0.3s;}
+.suggestion:hover{background:var(--orange);color:white;}
+.news-panel{flex:1;overflow-y:auto;padding:16px;}
+.news-header{font-family:'Baloo 2',cursive;font-size:1.3rem;font-weight:800;color:var(--orange);margin-bottom:16px;}
+.news-card{background:white;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);cursor:pointer;transition:all 0.3s;border-left:4px solid var(--orange);}
+.news-card:hover{transform:translateX(4px);}
+.news-title{font-weight:600;font-size:0.9rem;color:var(--dark);margin-bottom:6px;line-height:1.4;}
+.news-meta{font-size:0.75rem;color:#aaa;}
+.news-topic{background:#FFF0E0;color:var(--orange);padding:2px 8px;border-radius:10px;font-size:0.72rem;font-weight:600;display:inline-block;margin-bottom:6px;}
+.news-loading{text-align:center;padding:40px;color:#aaa;}
+.imggen-panel{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px;}
+.imggen-header{font-family:'Baloo 2',cursive;font-size:1.3rem;font-weight:800;color:var(--orange);}
+.imggen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
+.imggen-item{border-radius:14px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+.imggen-item img{width:100%;display:block;}
+.imggen-prompt{font-size:0.78rem;color:#666;padding:8px;background:white;}
+.input-area{background:white;border-top:1px solid #eee;padding:12px 16px;flex-shrink:0;}
+.input-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+.tool-btn{background:none;border:1.5px solid #eee;border-radius:20px;padding:5px 12px;font-size:0.78rem;cursor:pointer;font-family:'Poppins',sans-serif;color:#666;transition:all 0.3s;}
+.tool-btn:hover{border-color:var(--orange);color:var(--orange);}
+.tool-btn.active{background:var(--orange);color:white;border-color:var(--orange);}
+.voice-status{font-size:0.78rem;color:#aaa;}
+.input-row{display:flex;gap:10px;align-items:flex-end;}
+.file-preview-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+.file-chip{background:#FFF0E0;color:var(--orange);padding:4px 10px;border-radius:12px;font-size:0.75rem;display:flex;align-items:center;gap:4px;}
+.file-chip button{background:none;border:none;cursor:pointer;color:var(--orange);font-size:0.85rem;padding:0;}
+textarea{flex:1;border:2px solid #eee;border-radius:14px;padding:10px 14px;font-size:0.9rem;font-family:'Poppins',sans-serif;resize:none;outline:none;transition:all 0.3s;min-height:44px;max-height:120px;}
+textarea:focus{border-color:var(--orange);}
+.send-btn{background:var(--orange);color:white;border:none;border-radius:14px;width:44px;height:44px;cursor:pointer;font-size:1.1rem;transition:all 0.3s;flex-shrink:0;}
 .send-btn:hover{background:#e55a00;}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,107,0,0.4);}50%{box-shadow:0 0 0 10px rgba(255,107,0,0);}}
-.upload-preview{display:none;align-items:center;gap:10px;margin-bottom:8px;background:#fff8f0;padding:8px 12px;border-radius:12px;border:1px solid #ffe0cc;}
-.upload-preview img{width:48px;height:48px;object-fit:cover;border-radius:8px;}
-.upload-preview-name{font-size:0.78rem;color:#555;flex:1;}
-.remove-upload{background:none;border:none;color:#FF6B00;font-size:1rem;cursor:pointer;font-weight:700;}
-.img-gen-wrap{display:flex;flex-direction:column;gap:8px;}
-.style-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
-.style-label{font-size:0.75rem;color:#666;font-weight:600;}
-.style-chip{padding:4px 11px;border:1.5px solid #eee;border-radius:15px;font-size:0.73rem;cursor:pointer;background:white;color:#666;font-family:'Poppins',sans-serif;}
-.style-chip.selected{background:#FF6B00;color:white;border-color:#FF6B00;}
-.img-gen-row{display:flex;gap:8px;}
-.img-gen-row input{flex:1;padding:11px 14px;border:2px solid #f0f0f0;border-radius:25px;font-size:0.87rem;font-family:'Poppins',sans-serif;outline:none;}
-.img-gen-row input:focus{border-color:#FF6B00;}
-.gen-btn{padding:11px 20px;background:linear-gradient(135deg,#FF6B00,#FF9500);color:white;border:none;border-radius:25px;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap;}
-.hidden{display:none;}
+#fileInput{display:none;}
+.voice-modal{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:1000;}
+.voice-modal.show{display:flex;}
+.voice-box{background:white;border-radius:24px;padding:40px;text-align:center;min-width:280px;}
+.voice-circle{width:80px;height:80px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 16px;animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,107,0,0.4);}50%{box-shadow:0 0 0 16px rgba(255,107,0,0);}}
+.voice-text{font-weight:600;margin-bottom:8px;}
+.voice-result{color:#666;font-size:0.85rem;min-height:40px;margin-bottom:8px;}
+.voice-close{margin-top:8px;background:none;border:1.5px solid #ddd;padding:8px 24px;border-radius:20px;cursor:pointer;font-family:'Poppins',sans-serif;}
+@media(max-width:768px){.sidebar{display:none;}.logo{font-size:1.1rem;}}
 </style>
 </head>
 <body>
-
 <nav>
-  <div class="logo">AI <span>Chetan</span> 🇮🇳</div>
+  <div class="logo">AI <span>Chetan</span></div>
+  <div class="nav-tabs">
+    <button class="tab-btn active" id="tab-chat" onclick="switchTab('chat')">💬 Chat</button>
+    <button class="tab-btn" id="tab-news" onclick="switchTab('news')">📰 News</button>
+    <button class="tab-btn" id="tab-imggen" onclick="switchTab('imggen')">🎨 Image</button>
+  </div>
   <div class="nav-right">
-    <span class="user-name" id="userName">👤 User</span>
-    <button class="logout-btn" onclick="logout()">Logout</button>
+    <select class="lang-select" id="langSelect" onchange="changeLang()">
+      <option value="en-IN">🌐 English</option>
+      <option value="hi-IN">हिंदी</option>
+      <option value="ta-IN">தமிழ்</option>
+      <option value="te-IN">తెలుగు</option>
+      <option value="kn-IN">ಕನ್ನಡ</option>
+      <option value="ml-IN">മലയാളം</option>
+      <option value="mr-IN">मराठी</option>
+      <option value="gu-IN">ગુજરાતી</option>
+      <option value="pa-IN">ਪੰਜਾਬੀ</option>
+      <option value="bn-IN">বাংলা</option>
+      <option value="or-IN">ଓଡ଼ିଆ</option>
+      <option value="as-IN">অসমীয়া</option>
+      <option value="ur-IN">اردو</option>
+      <option value="sa-IN">संस्कृत</option>
+      <option value="ne-IN">नेपाली</option>
+      <option value="si-LK">සිංහල</option>
+      <option value="kok-IN">कोंकणी</option>
+      <option value="mai-IN">मैथिली</option>
+      <option value="doi-IN">डोगरी</option>
+      <option value="bho-IN">भोजपुरी</option>
+      <option value="raj-IN">राजस्थानी</option>
+      <option value="brx-IN">बड़ो</option>
+      <option value="ks-IN">کٲشُر</option>
+      <option value="sd-IN">سنڌي</option>
+      <option value="mni-IN">মৈতৈলোন্</option>
+      <option value="sat-IN">ᱥᱟᱱᱛᱟᱲᱤ</option>
+      <option value="tcy-IN">ತುಳು</option>
+      <option value="fr-FR">Français</option>
+    </select>
+    <span class="user-badge" id="userName">👤 User</span>
+    <button class="btn-logout" onclick="logout()">Logout</button>
   </div>
 </nav>
 
-<div class="toolbar">
-  <button class="mode-btn active" id="btnChat" onclick="setMode('chat')">💬 Chat</button>
-  <button class="mode-btn" id="btnImage" onclick="setMode('image')">🎨 Generate Image</button>
-  <select class="lang-select" id="langSelect" onchange="onLangChange()">
-    <option value="en">🌐 English</option>
-    <option value="hi">हिंदी</option>
-    <option value="bn">বাংলা</option>
-    <option value="te">తెలుగు</option>
-    <option value="mr">मराठी</option>
-    <option value="ta">தமிழ்</option>
-    <option value="gu">ગુજરાતી</option>
-    <option value="kn">ಕನ್ನಡ</option>
-    <option value="ml">മലയാളം</option>
-    <option value="pa">ਪੰਜਾਬੀ</option>
-    <option value="or">ଓଡ଼ିଆ</option>
-    <option value="as">অসমীয়া</option>
-    <option value="ur">اردو</option>
-    <option value="ne">नेपाली</option>
-    <option value="si">සිංහල</option>
-    <option value="mai">मैथिली</option>
-    <option value="kok">Konkani</option>
-    <option value="doi">डोगरी</option>
-    <option value="mni">মৈতৈলোন্</option>
-    <option value="ks">کٲشُر</option>
-    <option value="sa">संस्कृत</option>
-    <option value="sd">سنڌي</option>
-  </select>
-</div>
+<div class="main">
+  <div class="sidebar">
+    <div class="sidebar-header">💬 History <button class="new-chat-btn" onclick="newChat()">+ New</button></div>
+    <div class="history-list" id="historyList"></div>
+  </div>
 
-<div class="chat-area" id="chatArea">
-  <div class="msg-row">
-    <div class="avatar ai">🤖</div>
-    <div>
-      <div class="bubble ai">
-        Namaste! 🙏 I am <strong>AI Chetan</strong> — India's smartest AI!<br><br>
-        💬 Ask me anything in any Indian language<br>
-        🖼️ Share an image using the image button below<br>
-        🎨 Switch to <strong>Generate Image</strong> to create AI art<br>
-        🎙️ Use mic to speak in your language!
+  <div class="chat-area" id="panel-chat">
+    <div class="chat-messages" id="chatMessages">
+      <div class="welcome">
+        <h2>🙏 Namaste! I'm AI Chetan</h2>
+        <p>Ask me anything — Legal, Medical, Tech, News! Upload any file — images, PDFs, documents!</p>
+        <div class="suggestions">
+          <div class="suggestion" onclick="sendSuggestion('What are my legal rights as a tenant in India?')">⚖️ Tenant Rights</div>
+          <div class="suggestion" onclick="sendSuggestion('What medicine is good for fever?')">🏥 Medicine Help</div>
+          <div class="suggestion" onclick="sendSuggestion('How do I fix a slow computer?')">💻 Tech Support</div>
+          <div class="suggestion" onclick="sendSuggestion('What are latest news in India today?')">📰 Today News</div>
+          <div class="suggestion" onclick="sendSuggestion('How to file a consumer complaint in India?')">📝 File Complaint</div>
+          <div class="suggestion" onclick="sendSuggestion('Tell me a joke in Hindi!')">😄 Hindi Joke</div>
+        </div>
+      </div>
+    </div>
+    <div class="input-area">
+      <div class="file-preview-bar" id="filePreviewBar"></div>
+      <div class="input-toolbar">
+        <button class="tool-btn" onclick="triggerFile()">📎 Attach File</button>
+        <button class="tool-btn" id="voiceInputBtn" onclick="startVoiceInput()">🎙️ Speak</button>
+        <button class="tool-btn" id="voiceOutputBtn" onclick="toggleVoiceOutput()">🔊 AI Voice: OFF</button>
+        <span class="voice-status" id="voiceStatus"></span>
+        <input type="file" id="fileInput" multiple accept="*/*" onchange="handleFiles(event)"/>
+      </div>
+      <div class="input-row">
+        <textarea id="userInput" placeholder="Type or speak your question..." onkeydown="handleKey(event)" rows="1" oninput="autoResize(this)"></textarea>
+        <button class="send-btn" onclick="sendMessage()">➤</button>
       </div>
     </div>
   </div>
-</div>
 
-<div class="input-area">
-  <div id="chatInputSection">
-    <div class="upload-preview" id="uploadPreview">
-      <img id="previewThumb" src="" alt="preview"/>
-      <span class="upload-preview-name" id="previewName">image.jpg</span>
-      <button class="remove-upload" onclick="removeUpload()">✕</button>
-    </div>
-    <div class="chat-input-row">
-      <button class="icon-btn speak-btn" id="speakBtn" onclick="toggleVoice()" title="Speak">🎙️</button>
-      <button class="icon-btn img-upload-btn" onclick="document.getElementById('fileInput').click()" title="Share image">🖼️</button>
-      <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleImageUpload(event)"/>
-      <input type="text" id="userInput" placeholder="Type or speak your question..."/>
-      <button class="icon-btn send-btn" onclick="sendMessage()">➤</button>
-    </div>
+  <div class="news-panel" id="panel-news" style="display:none;">
+    <div class="news-header">📰 Latest News for India</div>
+    <div id="newsContainer"><div class="news-loading">Loading...</div></div>
   </div>
 
-  <div id="imageGenSection" class="hidden">
-    <div class="img-gen-wrap">
-      <div class="style-row">
-        <span class="style-label">Style:</span>
-        <button class="style-chip selected" onclick="selectStyle(this,'realistic')">📷 Realistic</button>
-        <button class="style-chip" onclick="selectStyle(this,'cartoon')">🎨 Cartoon</button>
-        <button class="style-chip" onclick="selectStyle(this,'anime')">⛩️ Anime</button>
-        <button class="style-chip" onclick="selectStyle(this,'oil painting')">🖼️ Oil Paint</button>
-        <button class="style-chip" onclick="selectStyle(this,'watercolor')">💧 Watercolor</button>
-        <button class="style-chip" onclick="selectStyle(this,'3d render')">🧊 3D</button>
-        <button class="style-chip" onclick="selectStyle(this,'indian traditional art')">🪔 Indian Art</button>
-      </div>
-      <div class="img-gen-row">
-        <input type="text" id="imagePrompt" placeholder="Describe your image... (any language)" onkeydown="if(event.key==='Enter') generateImage()"/>
-        <button class="gen-btn" onclick="generateImage()">✨ Generate</button>
-      </div>
+  <div class="imggen-panel" id="panel-imggen" style="display:none;flex-direction:column;">
+    <div class="imggen-header">🎨 AI Image Generator</div>
+    <div class="input-row" style="margin-bottom:12px;">
+      <textarea id="imgPrompt" placeholder="Describe the image you want to create..." rows="2" style="border:2px solid #eee;border-radius:14px;padding:10px 14px;font-size:0.9rem;font-family:'Poppins',sans-serif;resize:none;outline:none;flex:1;"></textarea>
+      <button onclick="generateImage()" style="background:var(--orange);color:white;border:none;border-radius:14px;padding:10px 18px;cursor:pointer;font-family:'Poppins',sans-serif;font-weight:600;white-space:nowrap;">Generate ✨</button>
     </div>
+    <div class="imggen-grid" id="imggenGrid"></div>
+  </div>
+</div>
+
+<div class="voice-modal" id="voiceModal">
+  <div class="voice-box">
+    <div class="voice-circle">🎙️</div>
+    <div class="voice-text">Listening... Speak Now!</div>
+    <div class="voice-result" id="voiceResult">Say something...</div>
+    <button class="voice-close" onclick="closeVoiceModal()">Cancel</button>
   </div>
 </div>
 
 <script>
-  // ===== USER =====
-  const userData = JSON.parse(localStorage.getItem('ai_chetan_user') || '{}');
-  if (!userData.name) { window.location.href = 'login.html'; }
-  document.getElementById('userName').textContent = '👤 ' + (userData.name || 'User');
-  function logout() { localStorage.removeItem('ai_chetan_user'); window.location.href = 'index.html'; }
+const GROQ_API_KEY = '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';
+const TAVILY_API_KEY = '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';
 
-  // ===== GROQ KEY =====
-  const GROQ_KEY = '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';
-  // ✅ Latest working Groq model (2026)
-  const GROQ_MODEL = 'llama-3.3-70b-versatile';
+// Auth
+const userData = localStorage.getItem('ai_chetan_user');
+if(!userData){window.location.href='login.html';}
+else{const u=JSON.parse(userData);document.getElementById('userName').textContent='👤 '+u.name;}
+function logout(){localStorage.removeItem('ai_chetan_user');window.location.href='index.html';}
 
-  // ===== MODE =====
-  let currentMode = 'chat';
-  function setMode(mode) {
-    currentMode = mode;
-    document.getElementById('btnChat').classList.toggle('active', mode === 'chat');
-    document.getElementById('btnImage').classList.toggle('active', mode === 'image');
-    document.getElementById('chatInputSection').classList.toggle('hidden', mode !== 'chat');
-    document.getElementById('imageGenSection').classList.toggle('hidden', mode !== 'image');
-  }
+// State
+let messages=[{role:'system',content:'You are AI Chetan, a helpful Indian AI assistant. Help with legal questions (Indian laws), medical advice, tech support, and general knowledge. Be friendly, warm and clear. For medical advice always recommend consulting a doctor for serious issues. For legal advice explain Indian laws simply. Respond in the same language the user uses — Hindi, English, Tamil, Telugu etc.'}];
+let voiceOutputEnabled=false;
+let selectedLang='en-IN';
+let attachedFiles=[];
+let chatHistory=JSON.parse(localStorage.getItem('ai_chetan_history')||'[]');
+let currentChatId=null;
 
-  // ===== STYLE =====
-  let selectedStyle = 'realistic';
-  function selectStyle(el, style) {
-    document.querySelectorAll('.style-chip').forEach(c => c.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedStyle = style;
-  }
+function changeLang(){selectedLang=document.getElementById('langSelect').value;}
 
-  // ===== LANGUAGE =====
-  const langNames = {
-    en:'English',hi:'Hindi',bn:'Bengali',te:'Telugu',mr:'Marathi',
-    ta:'Tamil',gu:'Gujarati',kn:'Kannada',ml:'Malayalam',pa:'Punjabi',
-    or:'Odia',as:'Assamese',ur:'Urdu',ne:'Nepali',si:'Sinhala',
-    mai:'Maithili',kok:'Konkani',doi:'Dogri',mni:'Manipuri',
-    ks:'Kashmiri',sa:'Sanskrit',sd:'Sindhi'
-  };
-  let selectedLang = 'en';
-  function onLangChange() {
-    selectedLang = document.getElementById('langSelect').value;
-    document.getElementById('userInput').placeholder =
-      selectedLang === 'en' ? 'Type or speak your question...' : `Type in ${langNames[selectedLang]}...`;
-  }
-
-  // ===== TRANSLATE =====
-  async function translateText(text, targetLang) {
-    if (!targetLang || targetLang === 'en') return text;
-    try {
-      const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
-      const res = await fetch(url);
-      const data = await res.json();
-      return data[0].map(x => x[0]).join('');
-    } catch(e) { return text; }
-  }
-
-  async function translateToEnglish(text, srcLang) {
-    if (!srcLang || srcLang === 'en') return text;
-    try {
-      const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${srcLang}&tl=en&dt=t&q=${encodeURIComponent(text)}`;
-      const res = await fetch(url);
-      const data = await res.json();
-      return data[0].map(x => x[0]).join('');
-    } catch(e) { return text; }
-  }
-
-  // ===== CHAT HELPERS =====
-  const chatArea = document.getElementById('chatArea');
-  let messages = [
-    { role: 'system', content: "You are AI Chetan, India's smartest AI assistant. Be helpful, friendly, and give clear useful answers. You are proud to be an Indian AI platform. Keep answers clear and not too long." }
-  ];
-
-  function addBubble(html, type, showLang) {
-    const row = document.createElement('div');
-    row.className = 'msg-row ' + (type === 'user' ? 'user' : '');
-    const avatar = document.createElement('div');
-    avatar.className = 'avatar ' + type;
-    avatar.textContent = type === 'user' ? (userData.name || 'U').charAt(0).toUpperCase() : '🤖';
-    const wrap = document.createElement('div');
-    const bubble = document.createElement('div');
-    bubble.className = 'bubble ' + type;
-    bubble.innerHTML = html;
-    wrap.appendChild(bubble);
-    if (showLang && selectedLang !== 'en') {
-      const tag = document.createElement('div');
-      tag.className = 'translated-tag';
-      tag.textContent = '🌐 ' + (langNames[selectedLang] || selectedLang);
-      wrap.appendChild(tag);
-    }
-    if (type === 'user') { row.appendChild(wrap); row.appendChild(avatar); }
-    else { row.appendChild(avatar); row.appendChild(wrap); }
-    chatArea.appendChild(row);
-    chatArea.scrollTop = chatArea.scrollHeight;
-  }
-
-  function addTyping() {
-    const row = document.createElement('div');
-    row.className = 'msg-row'; row.id = 'typingRow';
-    row.innerHTML = `<div class="avatar ai">🤖</div><div class="bubble ai typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;
-    chatArea.appendChild(row);
-    chatArea.scrollTop = chatArea.scrollHeight;
-  }
-  function removeTyping() { const t = document.getElementById('typingRow'); if(t) t.remove(); }
-
-  // ===== IMAGE UPLOAD =====
-  let uploadedImageBase64 = null;
-
-  function handleImageUpload(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      uploadedImageBase64 = e.target.result;
-      document.getElementById('previewThumb').src = uploadedImageBase64;
-      document.getElementById('previewName').textContent = file.name;
-      document.getElementById('uploadPreview').style.display = 'flex';
-    };
-    reader.readAsDataURL(file);
-    event.target.value = '';
-  }
-
-  function removeUpload() {
-    uploadedImageBase64 = null;
-    document.getElementById('uploadPreview').style.display = 'none';
-    document.getElementById('previewThumb').src = '';
-  }
-
-  // ===== SEND MESSAGE =====
-  async function sendMessage() {
-    const input = document.getElementById('userInput');
-    const userText = input.value.trim();
-    if (!userText && !uploadedImageBase64) return;
-    input.value = '';
-
-    // Show user message
-    const row = document.createElement('div');
-    row.className = 'msg-row user';
-    const avatar = document.createElement('div');
-    avatar.className = 'avatar user';
-    avatar.textContent = (userData.name || 'U').charAt(0).toUpperCase();
-    const wrap = document.createElement('div');
-    if (uploadedImageBase64) {
-      const img = document.createElement('img');
-      img.className = 'user-img-preview';
-      img.src = uploadedImageBase64;
-      wrap.appendChild(img);
-    }
-    if (userText) {
-      const bubble = document.createElement('div');
-      bubble.className = 'bubble user';
-      bubble.textContent = userText;
-      wrap.appendChild(bubble);
-    }
-    row.appendChild(wrap); row.appendChild(avatar);
-    chatArea.appendChild(row);
-    chatArea.scrollTop = chatArea.scrollHeight;
-
-    // Translate to English for Groq
-    const englishText = await translateToEnglish(userText || 'Describe this image in detail.', selectedLang);
-
-    // If image uploaded — describe it using Groq text (llama3 doesn't do vision, so we tell AI user shared image)
-    let promptContent = englishText;
-    if (uploadedImageBase64) {
-      promptContent = `The user has shared an image with you. They said: "${englishText}". Please respond helpfully. Note: Since you cannot directly see images, tell the user you can see they shared an image and ask them to describe what's in it, or let them know to use the Generate Image feature to create AI art from text descriptions.`;
-    }
-
-    messages.push({ role: 'user', content: promptContent });
-    const imgSnapshot = uploadedImageBase64;
-    removeUpload();
-    addTyping();
-
-    try {
-      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + GROQ_KEY
-        },
-        body: JSON.stringify({
-          model: GROQ_MODEL,
-          messages: messages,
-          max_tokens: 600,
-          temperature: 0.7
-        })
-      });
-
-      const data = await res.json();
-      removeTyping();
-
-      if (data.error) {
-        addBubble('❌ Groq Error: ' + data.error.message, 'ai', false);
-        return;
-      }
-
-      let reply = data.choices?.[0]?.message?.content || 'Sorry, no response.';
-      messages.push({ role: 'assistant', content: reply });
-
-      // Translate reply to selected language
-      const translated = await translateText(reply, selectedLang);
-      addBubble(translated, 'ai', selectedLang !== 'en');
-
-    } catch(err) {
-      removeTyping();
-      addBubble('❌ Network error: ' + err.message + '. Please check your internet.', 'ai', false);
-    }
-  }
-
-  // ===== GENERATE IMAGE (Pollinations AI — 100% FREE) =====
-  async function generateImage() {
-    const promptInput = document.getElementById('imagePrompt');
-    const userPrompt = promptInput.value.trim();
-    if (!userPrompt) { alert('Please describe the image you want to generate!'); return; }
-    promptInput.value = '';
-
-    const englishPrompt = await translateToEnglish(userPrompt, selectedLang);
-    const fullPrompt = `${englishPrompt}, ${selectedStyle} style, high quality, detailed, 4k`;
-
-    addBubble('🎨 ' + userPrompt, 'user', false);
-    addTyping();
-
-    const seed = Math.floor(Math.random() * 999999);
-    const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=512&height=512&seed=${seed}&nologo=true&enhance=true`;
-
-    // Wait for Pollinations to generate (2 seconds)
-    await new Promise(r => setTimeout(r, 2000));
-    removeTyping();
-
-    const row = document.createElement('div');
-    row.className = 'msg-row';
-    const avatar = document.createElement('div');
-    avatar.className = 'avatar ai';
-    avatar.textContent = '🤖';
-    const wrap = document.createElement('div');
-
-    const textBubble = document.createElement('div');
-    textBubble.className = 'bubble ai';
-    textBubble.textContent = '✨ Your AI generated image is ready!';
-
-    const img = document.createElement('img');
-    img.className = 'gen-img';
-    img.alt = 'AI Generated Image';
-    img.title = 'Click to see full size';
-    img.onclick = () => window.open(imageUrl, '_blank');
-
-    const tag = document.createElement('div');
-    tag.className = 'img-tag';
-    tag.textContent = '🖼️ Style: ' + selectedStyle + ' • Pollinations AI (Free)';
-
-    const dlBtn = document.createElement('a');
-    dlBtn.className = 'download-btn';
-    dlBtn.href = imageUrl;
-    dlBtn.target = '_blank';
-    dlBtn.textContent = '⬇️ Download Image';
-
-    img.onerror = () => {
-      img.style.display = 'none';
-      textBubble.textContent = '❌ Could not generate image. Try a simpler description!';
-      dlBtn.style.display = 'none';
-    };
-
-    // Set src after appending so onerror works
-    img.src = imageUrl;
-
-    wrap.appendChild(textBubble);
-    wrap.appendChild(img);
-    wrap.appendChild(tag);
-    wrap.appendChild(dlBtn);
-    row.appendChild(avatar);
-    row.appendChild(wrap);
-    chatArea.appendChild(row);
-    chatArea.scrollTop = chatArea.scrollHeight;
-  }
-
-  // ===== VOICE =====
-  let recognition = null;
-  let isListening = false;
-
-  function toggleVoice() {
-    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-      alert('Voice not supported. Use Chrome browser!');
-      return;
-    }
-    if (isListening) { recognition.stop(); return; }
-    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    recognition = new SR();
-    const voiceLangMap = {
-      en:'en-IN',hi:'hi-IN',bn:'bn-IN',te:'te-IN',mr:'mr-IN',
-      ta:'ta-IN',gu:'gu-IN',kn:'kn-IN',ml:'ml-IN',pa:'pa-IN',
-      ur:'ur-PK',ne:'ne-NP',si:'si-LK',or:'or-IN'
-    };
-    recognition.lang = voiceLangMap[selectedLang] || 'en-IN';
-    recognition.continuous = false;
-    recognition.interimResults = false;
-    recognition.onstart = () => {
-      isListening = true;
-      document.getElementById('speakBtn').classList.add('listening');
-      document.getElementById('speakBtn').textContent = '🔴';
-      document.getElementById('userInput').placeholder = 'Listening... speak now!';
-    };
-    recognition.onresult = (e) => {
-      document.getElementById('userInput').value = e.results[0][0].transcript;
-      sendMessage();
-    };
-    recognition.onend = () => {
-      isListening = false;
-      document.getElementById('speakBtn').classList.remove('listening');
-      document.getElementById('speakBtn').textContent = '🎙️';
-      document.getElementById('userInput').placeholder = 'Type or speak your question...';
-    };
-    recognition.onerror = () => {
-      isListening = false;
-      document.getElementById('speakBtn').classList.remove('listening');
-      document.getElementById('speakBtn').textContent = '🎙️';
-    };
-    recognition.start();
-  }
-
-  document.getElementById('userInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') sendMessage();
+function switchTab(tab){
+  ['chat','news','imggen'].forEach(t=>{
+    const el=document.getElementById('panel-'+t);
+    el.style.display='none';
+    document.getElementById('tab-'+t).classList.remove('active');
   });
+  const panel=document.getElementById('panel-'+tab);
+  if(tab==='chat')panel.style.display='flex';
+  else if(tab==='imggen'){panel.style.display='flex';panel.style.flexDirection='column';}
+  else panel.style.display='block';
+  document.getElementById('tab-'+tab).classList.add('active');
+  if(tab==='news')loadNews();
+}
+
+// History
+function saveCurrentChat(){
+  if(messages.length<=1)return;
+  const firstUser=messages.find(m=>m.role==='user');
+  if(!firstUser)return;
+  const title=firstUser.content.substring(0,40)+'...';
+  const chat={id:currentChatId||Date.now(),title,messages:[...messages],date:new Date().toLocaleDateString('en-IN')};
+  const idx=chatHistory.findIndex(c=>c.id===chat.id);
+  if(idx>=0)chatHistory[idx]=chat;else chatHistory.unshift(chat);
+  localStorage.setItem('ai_chetan_history',JSON.stringify(chatHistory.slice(0,50)));
+  renderHistory();
+}
+
+function renderHistory(){
+  const list=document.getElementById('historyList');
+  if(chatHistory.length===0){list.innerHTML='<div style="padding:16px;color:#aaa;font-size:0.82rem;text-align:center;">No history yet</div>';return;}
+  list.innerHTML='';
+  let lastDate='';
+  chatHistory.forEach(chat=>{
+    if(chat.date!==lastDate){
+      const d=document.createElement('div');
+      d.className='history-date';d.textContent=chat.date;
+      list.appendChild(d);lastDate=chat.date;
+    }
+    const item=document.createElement('div');
+    item.className='history-item'+(chat.id===currentChatId?' active':'');
+    item.textContent='💬 '+chat.title;
+    item.onclick=()=>loadChat(chat.id);
+    list.appendChild(item);
+  });
+}
+
+function loadChat(id){
+  const chat=chatHistory.find(c=>c.id===id);
+  if(!chat)return;
+  currentChatId=id;messages=[...chat.messages];
+  const container=document.getElementById('chatMessages');
+  container.innerHTML='';
+  messages.forEach(m=>{if(m.role!=='system')addBubble(m.content,m.role==='user'?'user':'ai');});
+  renderHistory();
+}
+
+function newChat(){
+  saveCurrentChat();
+  currentChatId=Date.now();
+  messages=[messages[0]];
+  document.getElementById('chatMessages').innerHTML=`<div class="welcome"><h2>🙏 New Chat!</h2><p>What can I help you with?</p><div class="suggestions"><div class="suggestion" onclick="sendSuggestion('Latest news in India today?')">📰 News</div><div class="suggestion" onclick="sendSuggestion('What are my legal rights?')">⚖️ Legal</div><div class="suggestion" onclick="sendSuggestion('Medicine for headache?')">🏥 Medical</div></div></div>`;
+  renderHistory();
+}
+
+// Files
+function triggerFile(){document.getElementById('fileInput').click();}
+function handleFiles(event){
+  Array.from(event.target.files).forEach(file=>{
+    attachedFiles.push(file);
+    const bar=document.getElementById('filePreviewBar');
+    const chip=document.createElement('div');
+    chip.className='file-chip';chip.id='chip-'+file.name;
+    chip.innerHTML=`📎 ${file.name} <button onclick="removeFile('${file.name}')">×</button>`;
+    bar.appendChild(chip);
+  });
+}
+function removeFile(name){
+  attachedFiles=attachedFiles.filter(f=>f.name!==name);
+  const chip=document.getElementById('chip-'+name);
+  if(chip)chip.remove();
+}
+async function fileToBase64(file){
+  return new Promise((res,rej)=>{
+    const reader=new FileReader();
+    reader.onload=()=>res(reader.result);
+    reader.onerror=rej;
+    reader.readAsDataURL(file);
+  });
+}
+
+// Send
+async function sendMessage(){
+  const input=document.getElementById('userInput');
+  const text=input.value.trim();
+  if(!text&&attachedFiles.length===0)return;
+  input.value='';autoResize(input);
+
+  let userContent=text;
+  let hasImage=false;
+
+  if(attachedFiles.length>0){
+    const fileNames=attachedFiles.map(f=>f.name).join(', ');
+    for(const file of attachedFiles){
+      if(file.type.startsWith('image/')){
+        try{
+          const dataUrl=await fileToBase64(file);
+          addBubble(`${text||'Please analyze this image:'}<br><img src="${dataUrl}" style="max-width:220px;border-radius:8px;margin-top:6px;">`, 'user');
+          hasImage=true;
+        }catch(e){addBubble(`📎 ${file.name}`, 'user');}
+      }else{
+        addBubble(`📎 ${file.name}${text?' — '+text:''}`, 'user');
+      }
+    }
+    userContent=(text||'Please help with these files:')+`\n[Files attached: ${fileNames}]`;
+    attachedFiles=[];
+    document.getElementById('filePreviewBar').innerHTML='';
+  }else{
+    addBubble(text,'user');
+  }
+
+  messages.push({role:'user',content:userContent});
+  showTyping();
+
+  try{
+    const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_API_KEY},
+      body:JSON.stringify({model:'llama-3.3-70b-versatile',messages,max_tokens:1500})
+    });
+    const data=await res.json();
+    const reply=data.choices[0].message.content;
+    removeTyping();
+    addBubble(reply,'ai');
+    messages.push({role:'assistant',content:reply});
+    saveCurrentChat();
+    if(voiceOutputEnabled)speakText(reply);
+  }catch(err){
+    removeTyping();
+    addBubble('Sorry, something went wrong. Please try again!','ai');
+  }
+}
+
+function sendSuggestion(text){document.getElementById('userInput').value=text;sendMessage();}
+function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px';}
+
+function addBubble(content,role){
+  const container=document.getElementById('chatMessages');
+  const wrap=document.createElement('div');wrap.className='msg-wrap '+role;
+  const avatar=document.createElement('div');avatar.className='avatar '+role;avatar.textContent=role==='ai'?'🤖':'👤';
+  const bubble=document.createElement('div');bubble.className='bubble '+role;
+  bubble.innerHTML=content.replace(/\n/g,'<br>');
+  wrap.appendChild(avatar);wrap.appendChild(bubble);
+  container.appendChild(wrap);container.scrollTop=container.scrollHeight;
+}
+
+function showTyping(){
+  const container=document.getElementById('chatMessages');
+  const wrap=document.createElement('div');wrap.className='typing-wrap';wrap.id='typing';
+  wrap.innerHTML='<div class="avatar ai">🤖</div><div class="typing"><span></span><span></span><span></span></div>';
+  container.appendChild(wrap);container.scrollTop=container.scrollHeight;
+}
+function removeTyping(){const t=document.getElementById('typing');if(t)t.remove();}
+
+// Voice Input
+function startVoiceInput(){
+  if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){
+    document.getElementById('voiceStatus').textContent='❌ Use Chrome for voice!';return;
+  }
+  document.getElementById('voiceModal').classList.add('show');
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  const recognition=new SR();
+  recognition.lang=selectedLang;
+  recognition.continuous=false;recognition.interimResults=true;
+  recognition.onresult=function(e){
+    const text=e.results[0][0].transcript;
+    document.getElementById('voiceResult').textContent=text;
+    if(e.results[0].isFinal){
+      document.getElementById('userInput').value=text;
+      closeVoiceModal();sendMessage();
+    }
+  };
+  recognition.onerror=function(){document.getElementById('voiceResult').textContent='❌ Could not hear. Try again!';};
+  recognition.onend=function(){closeVoiceModal();};
+  recognition.start();
+}
+function closeVoiceModal(){document.getElementById('voiceModal').classList.remove('show');}
+
+// Voice Output
+function toggleVoiceOutput(){
+  voiceOutputEnabled=!voiceOutputEnabled;
+  const btn=document.getElementById('voiceOutputBtn');
+  btn.textContent=voiceOutputEnabled?'🔊 AI Voice: ON':'🔊 AI Voice: OFF';
+  btn.classList.toggle('active',voiceOutputEnabled);
+}
+function speakText(text){
+  if(!voiceOutputEnabled)return;
+  window.speechSynthesis.cancel();
+  const clean=text.replace(/<[^>]*>/g,'').substring(0,600);
+  const utterance=new SpeechSynthesisUtterance(clean);
+  utterance.lang=selectedLang;utterance.rate=0.9;
+  const voices=window.speechSynthesis.getVoices();
+  const langCode=selectedLang.split('-')[0];
+  const match=voices.find(v=>v.lang.startsWith(langCode));
+  if(match)utterance.voice=match;
+  window.speechSynthesis.speak(utterance);
+}
+
+// News
+async function loadNews(){
+  const container=document.getElementById('newsContainer');
+  container.innerHTML='<div class="news-loading">🔄 Fetching latest Indian news...</div>';
+  try{
+    const topics=['India news today','India business technology news','India health legal news'];
+    const results=[];
+    for(const topic of topics){
+      const res=await fetch('https://api.tavily.com/search',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({api_key:TAVILY_API_KEY,query:topic,max_results:4,search_depth:'basic'})
+      });
+      const data=await res.json();
+      const label=topic.replace('India ','').replace(' news','').replace('today','General');
+      if(data.results)results.push(...data.results.map(r=>({...r,topicLabel:label})));
+    }
+    if(results.length===0)throw new Error('No results');
+    container.innerHTML='';
+    results.forEach(item=>{
+      const card=document.createElement('div');card.className='news-card';
+      card.innerHTML=`<div class="news-topic">${item.topicLabel}</div><div class="news-title">${item.title}</div><div class="news-meta">🌐 ${item.url?new URL(item.url).hostname:''} · Click to read</div>`;
+      card.onclick=()=>window.open(item.url,'_blank');
+      container.appendChild(card);
+    });
+  }catch(err){
+    container.innerHTML='<div class="news-loading">❌ Could not load news. Please check your Tavily API key!</div>';
+  }
+}
+
+// Image Generation
+async function generateImage(){
+  const prompt=document.getElementById('imgPrompt').value.trim();
+  if(!prompt)return;
+  const grid=document.getElementById('imggenGrid');
+  const placeholder=document.createElement('div');placeholder.className='imggen-item';
+  placeholder.innerHTML='<div style="background:#f0f0f0;height:200px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:0.9rem;">🎨 Generating...</div>';
+  grid.insertBefore(placeholder,grid.firstChild);
+  const seed=Math.floor(Math.random()*999999);
+  const url=`https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?seed=${seed}&width=512&height=512&nologo=true`;
+  const img=new Image();
+  img.onload=function(){placeholder.innerHTML=`<img src="${url}" alt="${prompt}"><div class="imggen-prompt">${prompt}</div>`;};
+  img.onerror=function(){placeholder.innerHTML='<div style="background:#fff0e0;height:200px;display:flex;align-items:center;justify-content:center;color:var(--orange);padding:16px;text-align:center;">❌ Try a different prompt!</div>';};
+  img.src=url;
+}
+
+// Init
+renderHistory();
+window.speechSynthesis.onvoiceschanged=function(){window.speechSynthesis.getVoices();};
 </script>
 </body>
 </html>
