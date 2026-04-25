@@ -67,9 +67,10 @@ input:focus{border-color:#FF6B00;box-shadow:0 0 0 3px rgba(255,107,0,0.1);}
 
 <script>
 // ⚠️ REPLACE THESE WITH YOUR ACTUAL SUPABASE DETAILS
-const SUPABASE_URL = 'https://nnvwcmhwdgpfwtlezboj.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5udndjbWh3ZGdwZnd0bGV6Ym9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNDY4ODcsImV4cCI6MjA5MjYyMjg4N30.yVovl7THGKtxWKzlKF7tifIkPofq6vXdexTeFWmq5AA';
 
+// ✅ After — client properly initialized
+const supabase = window.supabase.createClient('https://nnvwcmhwdgpfwtlezboj.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5udndjbWh3ZGdwZnd0bGV6Ym9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNDY4ODcsImV4cCI6MjA5MjYyMjg4N30.yVovl7THGKtxWKzlKF7tifIkPofq6vXdexTeFWmq5AA');
+  
 function showMsg(text, type) {
   const msg = document.getElementById('msg');
   msg.textContent = text;
