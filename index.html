@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Chetan — India's First AI Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --orange:#FF6B00;
+  --green:#138808;
+  --white:#FFFFFF;
+  --dark:#1a1a1a;
+  --light:#FFF8F0;
+}
+body{font-family:'Poppins',sans-serif;background:var(--light);color:var(--dark);}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;background:white;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:100;}
+.logo{font-family:'Baloo 2',cursive;font-size:1.8rem;font-weight:800;color:var(--orange);}
+.logo span{color:var(--green);}
+.nav-links{display:flex;gap:20px;align-items:center;}
+.nav-links a{text-decoration:none;color:var(--dark);font-weight:600;font-size:0.95rem;}
+.btn-login{border:2px solid var(--orange);color:var(--orange)!important;padding:8px 22px;border-radius:25px;transition:all 0.3s;}
+.btn-login:hover{background:var(--orange);color:white!important;}
+.btn-register{background:var(--orange);color:white!important;padding:8px 22px;border-radius:25px;transition:all 0.3s;}
+.btn-register:hover{background:#e55a00;}
+
+/* HERO */
+.hero{display:flex;align-items:center;justify-content:space-between;padding:80px 40px;max-width:1200px;margin:0 auto;gap:40px;}
+.hero-left{flex:1;}
+.badge{display:inline-block;background:#FFF0E0;color:var(--orange);border:1px solid var(--orange);padding:6px 16px;border-radius:20px;font-size:0.85rem;font-weight:600;margin-bottom:20px;}
+.hero h1{font-family:'Baloo 2',cursive;font-size:3.2rem;font-weight:800;line-height:1.2;margin-bottom:16px;}
+.hero h1 span{color:var(--orange);}
+.hero p{font-size:1.1rem;color:#555;margin-bottom:32px;line-height:1.7;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-primary{background:var(--orange);color:white;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:600;font-size:1rem;transition:all 0.3s;box-shadow:0 4px 15px rgba(255,107,0,0.3);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,107,0,0.4);}
+.btn-secondary{border:2px solid var(--orange);color:var(--orange);padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:600;font-size:1rem;transition:all 0.3s;}
+.btn-secondary:hover{background:var(--orange);color:white;}
+.hero-right{flex:1;display:flex;justify-content:center;}
+
+/* CHAT DEMO */
+.chat-demo{background:white;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.12);padding:24px;width:100%;max-width:420px;}
+.chat-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #f0f0f0;}
+.chat-avatar{width:42px;height:42px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.2rem;}
+.chat-title{font-weight:700;font-size:1rem;}
+.chat-status{font-size:0.75rem;color:var(--green);}
+.chat-dots{display:flex;gap:6px;margin-left:auto;}
+.dot{width:10px;height:10px;border-radius:50%;}
+.dot.red{background:#FF5F57;}
+.dot.yellow{background:#FFBD2E;}
+.dot.green{background:#28C840;}
+.msg{margin-bottom:14px;}
+.msg-user{display:flex;justify-content:flex-end;}
+.msg-user p{background:#FFF0E0;color:var(--dark);padding:10px 16px;border-radius:18px 18px 4px 18px;max-width:80%;font-size:0.9rem;}
+.msg-ai p{background:var(--orange);color:white;padding:10px 16px;border-radius:18px 18px 18px 4px;max-width:85%;font-size:0.9rem;line-height:1.5;}
+.chat-features{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
+.feature-tag{background:#f5f5f5;padding:6px 14px;border-radius:20px;font-size:0.78rem;color:#555;font-weight:500;}
+
+/* FEATURES */
+.features{padding:80px 40px;text-align:center;background:white;}
+.section-title{font-family:'Baloo 2',cursive;font-size:2.2rem;font-weight:800;margin-bottom:12px;}
+.section-title span{color:var(--orange);}
+.section-sub{color:#666;margin-bottom:50px;font-size:1rem;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;max-width:1100px;margin:0 auto;}
+.feature-card{background:var(--light);border-radius:16px;padding:28px;text-align:left;border:1px solid #FFE0C0;transition:all 0.3s;}
+.feature-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(255,107,0,0.1);}
+.feature-icon{font-size:2.2rem;margin-bottom:14px;}
+.feature-card h3{font-weight:700;margin-bottom:8px;font-size:1.05rem;}
+.feature-card p{color:#666;font-size:0.9rem;line-height:1.6;}
+
+/* FOOTER */
+footer{background:var(--dark);color:white;text-align:center;padding:30px;font-size:0.9rem;}
+footer span{color:var(--orange);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.hero-left{animation:fadeUp 0.8s ease forwards;}
+.hero-right{animation:fadeUp 0.8s ease 0.2s forwards;opacity:0;}
+
+@media(max-width:768px){
+  .hero{flex-direction:column;padding:40px 20px;}
+  .hero h1{font-size:2.2rem;}
+  nav{padding:14px 20px;}
+  .features{padding:50px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">AI <span>Chetan</span></div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="login.html" class="btn-login">Login</a>
+    <a href="register.html" class="btn-register">Register Free</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="badge">🇮🇳 Made in India | First Indian All-in-One AI</div>
+    <h1>Meet <span>AI Chetan</span><br/>Your Smart Indian AI</h1>
+    <p>Smart answers. Legal help. Medical advice. Tech support. Voice & Text — all in one place. No more searching 10 different tools.</p>
+    <div class="hero-btns">
+      <a href="register.html" class="btn-primary">Get Started Free</a>
+      <a href="login.html" class="btn-secondary">Login</a>
+    </div>
+    <p style="margin-top:16px;font-size:0.85rem;color:#999;">No credit card needed · Free to start</p>
+  </div>
+  <div class="hero-right">
+    <div class="chat-demo">
+      <div class="chat-header">
+        <div class="dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+        <div class="chat-avatar">🤖</div>
+        <div>
+          <div class="chat-title">AI Chetan</div>
+          <div class="chat-status">● Online</div>
+        </div>
+      </div>
+      <div class="msg msg-user"><p>How do I fix a 404 error?</p></div>
+      <div class="msg msg-ai"><p>A 404 error means the page was not found. Here are the steps to fix it: Check the URL spelling, clear browser cache, or contact the website owner...</p></div>
+      <div class="msg msg-user"><p>What medicine for headache?</p></div>
+      <div class="msg msg-ai"><p>For headaches, Paracetamol 500mg is commonly recommended. Drink water, rest in a quiet room. If pain persists more than 2 days, please see a doctor! 🏥</p></div>
+      <div class="chat-features">
+        <span class="feature-tag">💬 Chat</span>
+        <span class="feature-tag">🎙️ Voice</span>
+        <span class="feature-tag">⚖️ Legal</span>
+        <span class="feature-tag">🏥 Medical</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <h2 class="section-title">Everything You Need in <span>One AI</span></h2>
+  <p class="section-sub">Built for every Indian — in your language, for your problems</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">⚖️</div>
+      <h3>Legal Help</h3>
+      <p>Understand court procedures, your rights, how to file cases — explained simply in Hindi & English. No expensive lawyer needed!</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏥</div>
+      <h3>Medical Advice</h3>
+      <p>Symptom checker, medicine suggestions, and health tips. Always available, always helpful.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💻</div>
+      <h3>Tech Support</h3>
+      <p>Fix your computer, TV, phone, or any device problems with step-by-step easy guidance.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎙️</div>
+      <h3>Voice Input</h3>
+      <p>Just speak! No typing needed. Talk to AI Chetan in your natural voice and get instant answers.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📄</div>
+      <h3>Document Help</h3>
+      <p>Generate documents, letters, applications and more — ready to use in seconds.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌐</div>
+      <h3>Multi Language</h3>
+      <p>Hindi, English, Tamil, Telugu and more — AI Chetan speaks your language!</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Made with ❤️ in <span>India</span> · AI Chetan © 2025 · All rights reserved</p>
+</footer>
+
+</body>
+</html>
