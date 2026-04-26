@@ -12,85 +12,131 @@ body{font-family:'Poppins',sans-serif;background:var(--light);height:100vh;displ
 nav{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:var(--white);box-shadow:0 2px 8px rgba(0,0,0,0.08);flex-shrink:0;flex-wrap:wrap;gap:8px;}
 .logo{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:var(--orange);}
 .logo span{color:var(--green);}
-.nav-tabs{display:flex;gap:8px;}
-.tab-btn{padding:7px 16px;border-radius:20px;border:1.5px solid #ddd;background:none;cursor:pointer;font-size:0.82rem;font-family:'Poppins',sans-serif;font-weight:600;color:#666;transition:all 0.3s;}
+.nav-tabs{display:flex;gap:8px;flex-wrap:wrap;}
+.tab-btn{padding:7px 14px;border-radius:20px;border:1.5px solid #ddd;background:none;cursor:pointer;font-size:0.8rem;font-family:'Poppins',sans-serif;font-weight:600;color:#666;transition:all 0.3s;}
 .tab-btn.active{background:var(--orange);color:white;border-color:var(--orange);}
 .nav-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.lang-select{padding:6px 10px;border:1.5px solid #ddd;border-radius:20px;font-size:0.8rem;font-family:'Poppins',sans-serif;outline:none;cursor:pointer;background:white;}
+.lang-select{padding:6px 10px;border:1.5px solid #ddd;border-radius:20px;font-size:0.78rem;font-family:'Poppins',sans-serif;outline:none;cursor:pointer;background:white;}
 .user-badge{font-size:0.85rem;font-weight:600;color:#444;}
 .btn-logout{background:none;border:1.5px solid #ddd;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:0.8rem;font-family:'Poppins',sans-serif;transition:all 0.3s;}
 .btn-logout:hover{border-color:var(--orange);color:var(--orange);}
 .main{flex:1;display:flex;overflow:hidden;}
-.sidebar{width:230px;background:var(--white);border-right:1px solid #eee;display:flex;flex-direction:column;overflow:hidden;}
-.sidebar-header{padding:12px 16px;font-weight:700;font-size:0.85rem;color:#444;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;}
-.new-chat-btn{background:var(--orange);color:white;border:none;padding:5px 12px;border-radius:12px;font-size:0.78rem;cursor:pointer;font-family:'Poppins',sans-serif;font-weight:600;}
-.history-list{flex:1;overflow-y:auto;padding:8px;}
-.history-item{padding:10px 12px;border-radius:10px;cursor:pointer;font-size:0.82rem;color:#555;transition:all 0.2s;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sidebar{width:220px;background:var(--white);border-right:1px solid #eee;display:flex;flex-direction:column;overflow:hidden;}
+.sidebar-header{padding:12px 14px;font-weight:700;font-size:0.83rem;color:#444;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;}
+.new-chat-btn{background:var(--orange);color:white;border:none;padding:4px 10px;border-radius:10px;font-size:0.75rem;cursor:pointer;font-family:'Poppins',sans-serif;font-weight:600;}
+.history-list{flex:1;overflow-y:auto;padding:6px;}
+.history-item{padding:9px 11px;border-radius:10px;cursor:pointer;font-size:0.8rem;color:#555;transition:all 0.2s;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .history-item:hover,.history-item.active{background:#FFF0E0;color:var(--orange);}
 .history-item.active{font-weight:600;}
-.history-date{font-size:0.72rem;color:#aaa;padding:6px 12px 2px;}
+.history-date{font-size:0.7rem;color:#aaa;padding:5px 11px 2px;}
 .chat-area{flex:1;display:flex;flex-direction:column;overflow:hidden;}
-.chat-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px;}
+.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:14px;}
 .chat-messages::-webkit-scrollbar{width:4px;}
 .chat-messages::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px;}
 .msg-wrap{display:flex;align-items:flex-start;gap:10px;}
 .msg-wrap.user{flex-direction:row-reverse;}
-.avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0;}
+.avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;}
 .avatar.ai{background:var(--orange);color:white;}
 .avatar.user{background:var(--green);color:white;}
-.bubble{padding:12px 16px;border-radius:18px;max-width:72%;font-size:0.9rem;line-height:1.65;}
+.bubble{padding:11px 15px;border-radius:18px;max-width:74%;font-size:0.88rem;line-height:1.65;}
 .bubble.ai{background:white;color:var(--dark);border-radius:4px 18px 18px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);}
 .bubble.user{background:var(--orange);color:white;border-radius:18px 4px 18px 18px;}
 .bubble img{max-width:100%;border-radius:10px;margin-top:8px;display:block;}
+
+/* YOUTUBE CARD */
+.yt-card{background:linear-gradient(135deg,#FF0000,#CC0000);border-radius:14px;padding:14px 16px;margin-top:10px;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;gap:12px;}
+.yt-card:hover{transform:scale(1.02);box-shadow:0 6px 20px rgba(255,0,0,0.3);}
+.yt-icon{font-size:2rem;flex-shrink:0;}
+.yt-info{flex:1;}
+.yt-title{color:white;font-weight:700;font-size:0.88rem;margin-bottom:3px;}
+.yt-sub{color:rgba(255,255,255,0.8);font-size:0.75rem;}
+.yt-btn{background:white;color:#CC0000;border:none;padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap;}
+
+/* MOOD CARD */
+.mood-card{background:linear-gradient(135deg,#667eea,#764ba2);border-radius:14px;padding:14px 16px;margin-top:10px;}
+.mood-title{color:white;font-weight:700;font-size:0.88rem;margin-bottom:10px;}
+.mood-songs{display:flex;flex-direction:column;gap:6px;}
+.mood-song{background:rgba(255,255,255,0.15);border-radius:10px;padding:8px 12px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:8px;}
+.mood-song:hover{background:rgba(255,255,255,0.25);}
+.mood-song-name{color:white;font-size:0.8rem;font-weight:500;}
+.mood-song-artist{color:rgba(255,255,255,0.7);font-size:0.72rem;}
+
+/* BOOKING CARD */
+.booking-card{background:linear-gradient(135deg,#11998e,#38ef7d);border-radius:14px;padding:14px 16px;margin-top:10px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.3s;}
+.booking-card:hover{transform:scale(1.02);}
+.booking-icon{font-size:2rem;}
+.booking-info .booking-title{color:white;font-weight:700;font-size:0.88rem;}
+.booking-info .booking-sub{color:rgba(255,255,255,0.85);font-size:0.75rem;}
+.booking-btn{background:white;color:#11998e;border:none;padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;margin-left:auto;white-space:nowrap;}
+
 .typing-wrap{display:flex;align-items:flex-start;gap:10px;}
-.typing{display:flex;gap:5px;padding:14px 16px;background:white;border-radius:4px 18px 18px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);}
+.typing{display:flex;gap:5px;padding:13px 15px;background:white;border-radius:4px 18px 18px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);}
 .typing span{width:7px;height:7px;background:var(--orange);border-radius:50%;animation:bounce 1.2s infinite;}
 .typing span:nth-child(2){animation-delay:0.2s;}
 .typing span:nth-child(3){animation-delay:0.4s;}
 @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
-.welcome{text-align:center;padding:30px 20px;max-width:600px;margin:0 auto;}
-.welcome h2{font-family:'Baloo 2',cursive;font-size:1.8rem;color:var(--orange);margin-bottom:8px;}
-.welcome p{color:#888;font-size:0.9rem;margin-bottom:20px;}
-.suggestions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
-.suggestion{background:white;border:1.5px solid #FFD0A0;padding:8px 16px;border-radius:20px;font-size:0.8rem;cursor:pointer;color:var(--orange);font-weight:500;transition:all 0.3s;}
+.welcome{text-align:center;padding:24px 16px;max-width:600px;margin:0 auto;}
+.welcome h2{font-family:'Baloo 2',cursive;font-size:1.7rem;color:var(--orange);margin-bottom:6px;}
+.welcome p{color:#888;font-size:0.88rem;margin-bottom:16px;}
+.suggestions{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;}
+.suggestion{background:white;border:1.5px solid #FFD0A0;padding:7px 14px;border-radius:20px;font-size:0.78rem;cursor:pointer;color:var(--orange);font-weight:500;transition:all 0.3s;}
 .suggestion:hover{background:var(--orange);color:white;}
 .news-panel{flex:1;overflow-y:auto;padding:16px;}
-.news-header{font-family:'Baloo 2',cursive;font-size:1.3rem;font-weight:800;color:var(--orange);margin-bottom:16px;}
-.news-card{background:white;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);cursor:pointer;transition:all 0.3s;border-left:4px solid var(--orange);}
+.news-header{font-family:'Baloo 2',cursive;font-size:1.2rem;font-weight:800;color:var(--orange);margin-bottom:14px;}
+.news-card{background:white;border-radius:14px;padding:14px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,0.06);cursor:pointer;transition:all 0.3s;border-left:4px solid var(--orange);}
 .news-card:hover{transform:translateX(4px);}
-.news-title{font-weight:600;font-size:0.9rem;color:var(--dark);margin-bottom:6px;line-height:1.4;}
-.news-meta{font-size:0.75rem;color:#aaa;}
-.news-topic{background:#FFF0E0;color:var(--orange);padding:2px 8px;border-radius:10px;font-size:0.72rem;font-weight:600;display:inline-block;margin-bottom:6px;}
+.news-title{font-weight:600;font-size:0.88rem;color:var(--dark);margin-bottom:5px;line-height:1.4;}
+.news-meta{font-size:0.73rem;color:#aaa;}
+.news-topic{background:#FFF0E0;color:var(--orange);padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600;display:inline-block;margin-bottom:5px;}
 .news-loading{text-align:center;padding:40px;color:#aaa;}
-.imggen-panel{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px;}
-.imggen-header{font-family:'Baloo 2',cursive;font-size:1.3rem;font-weight:800;color:var(--orange);}
-.imggen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
-.imggen-item{border-radius:14px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+.imggen-panel{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:14px;}
+.imggen-header{font-family:'Baloo 2',cursive;font-size:1.2rem;font-weight:800;color:var(--orange);}
+.imggen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;}
+.imggen-item{border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
 .imggen-item img{width:100%;display:block;}
-.imggen-prompt{font-size:0.78rem;color:#666;padding:8px;background:white;}
-.input-area{background:white;border-top:1px solid #eee;padding:12px 16px;flex-shrink:0;}
-.input-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
-.tool-btn{background:none;border:1.5px solid #eee;border-radius:20px;padding:5px 12px;font-size:0.78rem;cursor:pointer;font-family:'Poppins',sans-serif;color:#666;transition:all 0.3s;}
+.imggen-prompt-label{font-size:0.75rem;color:#666;padding:7px;background:white;}
+
+/* MUSIC TAB */
+.music-panel{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:14px;}
+.music-header{font-family:'Baloo 2',cursive;font-size:1.2rem;font-weight:800;color:var(--orange);}
+.mood-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:16px;}
+.mood-btn{background:white;border:2px solid #eee;border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer;transition:all 0.3s;font-family:'Poppins',sans-serif;}
+.mood-btn:hover{border-color:var(--orange);transform:translateY(-2px);}
+.mood-btn .emoji{font-size:1.8rem;display:block;margin-bottom:6px;}
+.mood-btn .label{font-size:0.78rem;font-weight:600;color:#555;}
+.playlist-section{background:white;border-radius:14px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+.playlist-title{font-weight:700;font-size:0.9rem;margin-bottom:12px;color:var(--dark);}
+.playlist-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;cursor:pointer;transition:all 0.2s;}
+.playlist-item:hover{background:#FFF0E0;}
+.song-num{width:24px;height:24px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.72rem;font-weight:700;flex-shrink:0;}
+.song-info{flex:1;}
+.song-name{font-weight:600;font-size:0.85rem;color:var(--dark);}
+.song-artist{font-size:0.75rem;color:#888;}
+.song-play{color:var(--orange);font-size:1.1rem;}
+
+.input-area{background:white;border-top:1px solid #eee;padding:11px 14px;flex-shrink:0;}
+.input-toolbar{display:flex;align-items:center;gap:7px;margin-bottom:9px;flex-wrap:wrap;}
+.tool-btn{background:none;border:1.5px solid #eee;border-radius:20px;padding:5px 11px;font-size:0.76rem;cursor:pointer;font-family:'Poppins',sans-serif;color:#666;transition:all 0.3s;}
 .tool-btn:hover{border-color:var(--orange);color:var(--orange);}
 .tool-btn.active{background:var(--orange);color:white;border-color:var(--orange);}
-.voice-status{font-size:0.78rem;color:#aaa;}
-.input-row{display:flex;gap:10px;align-items:flex-end;}
-.file-preview-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
-.file-chip{background:#FFF0E0;color:var(--orange);padding:4px 10px;border-radius:12px;font-size:0.75rem;display:flex;align-items:center;gap:4px;}
-.file-chip button{background:none;border:none;cursor:pointer;color:var(--orange);font-size:0.85rem;padding:0;}
-textarea{flex:1;border:2px solid #eee;border-radius:14px;padding:10px 14px;font-size:0.9rem;font-family:'Poppins',sans-serif;resize:none;outline:none;transition:all 0.3s;min-height:44px;max-height:120px;}
+.voice-status{font-size:0.76rem;color:#aaa;}
+.input-row{display:flex;gap:9px;align-items:flex-end;}
+.file-preview-bar{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:7px;}
+.file-chip{background:#FFF0E0;color:var(--orange);padding:3px 9px;border-radius:10px;font-size:0.73rem;display:flex;align-items:center;gap:4px;}
+.file-chip button{background:none;border:none;cursor:pointer;color:var(--orange);font-size:0.82rem;padding:0;}
+textarea{flex:1;border:2px solid #eee;border-radius:12px;padding:9px 13px;font-size:0.88rem;font-family:'Poppins',sans-serif;resize:none;outline:none;transition:all 0.3s;min-height:42px;max-height:110px;}
 textarea:focus{border-color:var(--orange);}
-.send-btn{background:var(--orange);color:white;border:none;border-radius:14px;width:44px;height:44px;cursor:pointer;font-size:1.1rem;transition:all 0.3s;flex-shrink:0;}
+.send-btn{background:var(--orange);color:white;border:none;border-radius:12px;width:42px;height:42px;cursor:pointer;font-size:1.1rem;transition:all 0.3s;flex-shrink:0;}
 .send-btn:hover{background:#e55a00;}
 #fileInput{display:none;}
 .voice-modal{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:1000;}
 .voice-modal.show{display:flex;}
-.voice-box{background:white;border-radius:24px;padding:40px;text-align:center;min-width:280px;}
-.voice-circle{width:80px;height:80px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 16px;animation:pulse 1s infinite;}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,107,0,0.4);}50%{box-shadow:0 0 0 16px rgba(255,107,0,0);}}
-.voice-text{font-weight:600;margin-bottom:8px;}
-.voice-result{color:#666;font-size:0.85rem;min-height:40px;margin-bottom:8px;}
-.voice-close{margin-top:8px;background:none;border:1.5px solid #ddd;padding:8px 24px;border-radius:20px;cursor:pointer;font-family:'Poppins',sans-serif;}
+.voice-box{background:white;border-radius:24px;padding:36px;text-align:center;min-width:270px;}
+.voice-circle{width:76px;height:76px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin:0 auto 14px;animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,107,0,0.4);}50%{box-shadow:0 0 0 14px rgba(255,107,0,0);}}
+.voice-text{font-weight:600;margin-bottom:7px;}
+.voice-result{color:#666;font-size:0.83rem;min-height:36px;margin-bottom:7px;}
+.voice-close{margin-top:7px;background:none;border:1.5px solid #ddd;padding:7px 22px;border-radius:20px;cursor:pointer;font-family:'Poppins',sans-serif;}
 @media(max-width:768px){.sidebar{display:none;}.logo{font-size:1.1rem;}}
 </style>
 </head>
@@ -99,6 +145,7 @@ textarea:focus{border-color:var(--orange);}
   <div class="logo">AI <span>Chetan</span></div>
   <div class="nav-tabs">
     <button class="tab-btn active" id="tab-chat" onclick="switchTab('chat')">💬 Chat</button>
+    <button class="tab-btn" id="tab-music" onclick="switchTab('music')">🎵 Music</button>
     <button class="tab-btn" id="tab-news" onclick="switchTab('news')">📰 News</button>
     <button class="tab-btn" id="tab-imggen" onclick="switchTab('imggen')">🎨 Image</button>
   </div>
@@ -114,23 +161,9 @@ textarea:focus{border-color:var(--orange);}
       <option value="gu-IN">ગુજરાતી</option>
       <option value="pa-IN">ਪੰਜਾਬੀ</option>
       <option value="bn-IN">বাংলা</option>
-      <option value="or-IN">ଓଡ଼ିଆ</option>
-      <option value="as-IN">অসমীয়া</option>
       <option value="ur-IN">اردو</option>
-      <option value="sa-IN">संस्कृत</option>
-      <option value="ne-IN">नेपाली</option>
-      <option value="si-LK">සිංහල</option>
-      <option value="kok-IN">कोंकणी</option>
-      <option value="mai-IN">मैथिली</option>
-      <option value="doi-IN">डोगरी</option>
       <option value="bho-IN">भोजपुरी</option>
       <option value="raj-IN">राजस्थानी</option>
-      <option value="brx-IN">बड़ो</option>
-      <option value="ks-IN">کٲشُر</option>
-      <option value="sd-IN">سنڌي</option>
-      <option value="mni-IN">মৈতৈলোন্</option>
-      <option value="sat-IN">ᱥᱟᱱᱛᱟᱲᱤ</option>
-      <option value="tcy-IN">ತುಳು</option>
       <option value="fr-FR">Français</option>
     </select>
     <span class="user-badge" id="userName">👤 User</span>
@@ -144,47 +177,71 @@ textarea:focus{border-color:var(--orange);}
     <div class="history-list" id="historyList"></div>
   </div>
 
+  <!-- CHAT -->
   <div class="chat-area" id="panel-chat">
     <div class="chat-messages" id="chatMessages">
       <div class="welcome">
         <h2>🙏 Namaste! I'm AI Chetan</h2>
-        <p>Ask me anything — Legal, Medical, Tech, News! Upload any file — images, PDFs, documents!</p>
+        <p>Ask me anything! I can help with Legal, Medical, Tech, Music recommendations, News and more!</p>
         <div class="suggestions">
-          <div class="suggestion" onclick="sendSuggestion('What are my legal rights as a tenant in India?')">⚖️ Tenant Rights</div>
-          <div class="suggestion" onclick="sendSuggestion('What medicine is good for fever?')">🏥 Medicine Help</div>
-          <div class="suggestion" onclick="sendSuggestion('How do I fix a slow computer?')">💻 Tech Support</div>
-          <div class="suggestion" onclick="sendSuggestion('What are latest news in India today?')">📰 Today News</div>
-          <div class="suggestion" onclick="sendSuggestion('How to file a consumer complaint in India?')">📝 File Complaint</div>
-          <div class="suggestion" onclick="sendSuggestion('Tell me a joke in Hindi!')">😄 Hindi Joke</div>
+          <div class="suggestion" onclick="sendSuggestion('I am feeling lonely, suggest me some songs')">🎵 I am lonely</div>
+          <div class="suggestion" onclick="sendSuggestion('Play some happy Bollywood songs')">😊 Happy Songs</div>
+          <div class="suggestion" onclick="sendSuggestion('What are my legal rights as a tenant in India?')">⚖️ Legal Help</div>
+          <div class="suggestion" onclick="sendSuggestion('Medicine for fever?')">🏥 Medical</div>
+          <div class="suggestion" onclick="sendSuggestion('How to fix slow computer?')">💻 Tech Help</div>
+          <div class="suggestion" onclick="sendSuggestion('Give me new business ideas for India')">💡 Business Ideas</div>
+          <div class="suggestion" onclick="sendSuggestion('Play Arijit Singh songs')">🎤 Arijit Singh</div>
+          <div class="suggestion" onclick="sendSuggestion('I am sad, cheer me up')">😢 I am sad</div>
         </div>
       </div>
     </div>
     <div class="input-area">
       <div class="file-preview-bar" id="filePreviewBar"></div>
       <div class="input-toolbar">
-        <button class="tool-btn" onclick="triggerFile()">📎 Attach File</button>
-        <button class="tool-btn" id="voiceInputBtn" onclick="startVoiceInput()">🎙️ Speak</button>
-        <button class="tool-btn" id="voiceOutputBtn" onclick="toggleVoiceOutput()">🔊 AI Voice: OFF</button>
+        <button class="tool-btn" onclick="triggerFile()">📎 File</button>
+        <button class="tool-btn" onclick="startVoiceInput()">🎙️ Speak</button>
+        <button class="tool-btn" id="voiceOutputBtn" onclick="toggleVoiceOutput()">🔊 Voice: OFF</button>
         <span class="voice-status" id="voiceStatus"></span>
         <input type="file" id="fileInput" multiple accept="*/*" onchange="handleFiles(event)"/>
       </div>
       <div class="input-row">
-        <textarea id="userInput" placeholder="Type or speak your question..." onkeydown="handleKey(event)" rows="1" oninput="autoResize(this)"></textarea>
+        <textarea id="userInput" placeholder="Ask anything... or say 'play songs for my mood'" onkeydown="handleKey(event)" rows="1" oninput="autoResize(this)"></textarea>
         <button class="send-btn" onclick="sendMessage()">➤</button>
       </div>
     </div>
   </div>
 
+  <!-- MUSIC TAB -->
+  <div class="music-panel" id="panel-music" style="display:none;">
+    <div class="music-header">🎵 Music — How are you feeling?</div>
+    <div class="mood-grid">
+      <div class="mood-btn" onclick="playMood('happy','Happy Bollywood Songs')"><span class="emoji">😊</span><span class="label">Happy</span></div>
+      <div class="mood-btn" onclick="playMood('sad','Sad Hindi Songs Heart Touching')"><span class="emoji">😢</span><span class="label">Sad</span></div>
+      <div class="mood-btn" onclick="playMood('lonely','Lonely Feeling Songs Hindi')"><span class="emoji">🥺</span><span class="label">Lonely</span></div>
+      <div class="mood-btn" onclick="playMood('romantic','Romantic Hindi Love Songs')"><span class="emoji">❤️</span><span class="label">Romantic</span></div>
+      <div class="mood-btn" onclick="playMood('motivated','Motivational Songs Hindi')"><span class="emoji">💪</span><span class="label">Motivated</span></div>
+      <div class="mood-btn" onclick="playMood('party','Party Songs Hindi Dance')"><span class="emoji">🎉</span><span class="label">Party</span></div>
+      <div class="mood-btn" onclick="playMood('relaxed','Peaceful Calm Hindi Songs')"><span class="emoji">😌</span><span class="label">Relaxed</span></div>
+      <div class="mood-btn" onclick="playMood('devotional','Bhakti Songs Hindi Devotional')"><span class="emoji">🙏</span><span class="label">Devotional</span></div>
+    </div>
+    <div class="playlist-section">
+      <div class="playlist-title">🔥 Popular Right Now</div>
+      <div id="popularSongs"></div>
+    </div>
+  </div>
+
+  <!-- NEWS -->
   <div class="news-panel" id="panel-news" style="display:none;">
     <div class="news-header">📰 Latest News for India</div>
     <div id="newsContainer"><div class="news-loading">Loading...</div></div>
   </div>
 
-  <div class="imggen-panel" id="panel-imggen" style="display:none;flex-direction:column;">
+  <!-- IMAGE GEN -->
+  <div class="imggen-panel" id="panel-imggen" style="display:none;">
     <div class="imggen-header">🎨 AI Image Generator</div>
     <div class="input-row" style="margin-bottom:12px;">
-      <textarea id="imgPrompt" placeholder="Describe the image you want to create..." rows="2" style="border:2px solid #eee;border-radius:14px;padding:10px 14px;font-size:0.9rem;font-family:'Poppins',sans-serif;resize:none;outline:none;flex:1;"></textarea>
-      <button onclick="generateImage()" style="background:var(--orange);color:white;border:none;border-radius:14px;padding:10px 18px;cursor:pointer;font-family:'Poppins',sans-serif;font-weight:600;white-space:nowrap;">Generate ✨</button>
+      <textarea id="imgPrompt" placeholder="Describe the image you want..." rows="2" style="border:2px solid #eee;border-radius:12px;padding:9px 13px;font-size:0.88rem;font-family:'Poppins',sans-serif;resize:none;outline:none;flex:1;"></textarea>
+      <button onclick="generateImage()" style="background:var(--orange);color:white;border:none;border-radius:12px;padding:9px 16px;cursor:pointer;font-family:'Poppins',sans-serif;font-weight:600;white-space:nowrap;">Generate ✨</button>
     </div>
     <div class="imggen-grid" id="imggenGrid"></div>
   </div>
@@ -201,7 +258,7 @@ textarea:focus{border-color:var(--orange);}
 
 <script>
 const GROQ_API_KEY = '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';
-const TAVILY_API_KEY = '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';
+const TAVILY_API_KEY = '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';
 
 // Auth
 const userData = localStorage.getItem('ai_chetan_user');
@@ -210,27 +267,69 @@ else{const u=JSON.parse(userData);document.getElementById('userName').textConten
 function logout(){localStorage.removeItem('ai_chetan_user');window.location.href='index.html';}
 
 // State
-let messages=[{role:'system',content:'You are AI Chetan, a helpful Indian AI assistant. Help with legal questions (Indian laws), medical advice, tech support, and general knowledge. Be friendly, warm and clear. For medical advice always recommend consulting a doctor for serious issues. For legal advice explain Indian laws simply. Respond in the same language the user uses — Hindi, English, Tamil, Telugu etc.'}];
+let messages=[{role:'system',content:`You are AI Chetan, a helpful Indian AI assistant. You help with:
+- Legal questions (Indian laws, consumer rights, tenant rights, court procedures)
+- Medical advice (symptoms, medicines — always recommend doctor for serious issues)
+- Tech support (computers, phones, TVs, software)
+- Music and entertainment recommendations
+- Business ideas especially for India
+- General knowledge and daily help
+- News and current events
+
+IMPORTANT — MUSIC DETECTION: If user mentions feeling lonely, sad, happy, bored, romantic, motivated, or asks to play songs/music — ALWAYS respond with a music recommendation AND include this exact marker: [YOUTUBE_SEARCH: search query here]. For example: [YOUTUBE_SEARCH: Arijit Singh sad songs] or [YOUTUBE_SEARCH: Happy Bollywood songs 2024]
+
+BOOKING DETECTION: If user wants to book bus/train/cab/food — include [BOOKING: service name | URL] marker.
+
+Always be warm, friendly and respond in the same language the user uses.`}];
 let voiceOutputEnabled=false;
 let selectedLang='en-IN';
 let attachedFiles=[];
 let chatHistory=JSON.parse(localStorage.getItem('ai_chetan_history')||'[]');
 let currentChatId=null;
 
+// Popular songs data
+const popularSongs=[
+  {name:'Tum Hi Ho',artist:'Arijit Singh',query:'Tum Hi Ho Arijit Singh'},
+  {name:'Kesariya',artist:'Arijit Singh',query:'Kesariya Brahmastra'},
+  {name:'Raataan Lambiyan',artist:'Jubin Nautiyal',query:'Raataan Lambiyan Jubin Nautiyal'},
+  {name:'Tera Ban Jaunga',artist:'Tulsi Kumar',query:'Tera Ban Jaunga'},
+  {name:'Dil Diyan Gallan',artist:'Atif Aslam',query:'Dil Diyan Gallan Atif Aslam'},
+  {name:'Hawayein',artist:'Arijit Singh',query:'Hawayein Jab Harry Met Sejal'},
+];
+
+function renderPopularSongs(){
+  const container=document.getElementById('popularSongs');
+  container.innerHTML='';
+  popularSongs.forEach((song,i)=>{
+    const item=document.createElement('div');
+    item.className='playlist-item';
+    item.innerHTML=`<div class="song-num">${i+1}</div><div class="song-info"><div class="song-name">${song.name}</div><div class="song-artist">${song.artist}</div></div><div class="song-play">▶</div>`;
+    item.onclick=()=>openYouTube(song.query);
+    container.appendChild(item);
+  });
+}
+
+function openYouTube(query){
+  const url='https://www.youtube.com/results?search_query='+encodeURIComponent(query);
+  window.open(url,'_blank');
+}
+
+function playMood(mood,query){openYouTube(query);}
+
 function changeLang(){selectedLang=document.getElementById('langSelect').value;}
 
 function switchTab(tab){
-  ['chat','news','imggen'].forEach(t=>{
-    const el=document.getElementById('panel-'+t);
-    el.style.display='none';
+  ['chat','music','news','imggen'].forEach(t=>{
+    document.getElementById('panel-'+t).style.display='none';
     document.getElementById('tab-'+t).classList.remove('active');
   });
   const panel=document.getElementById('panel-'+tab);
   if(tab==='chat')panel.style.display='flex';
-  else if(tab==='imggen'){panel.style.display='flex';panel.style.flexDirection='column';}
-  else panel.style.display='block';
+  else panel.style.display='flex';
+  if(tab==='imggen'||tab==='music')panel.style.flexDirection='column';
   document.getElementById('tab-'+tab).classList.add('active');
   if(tab==='news')loadNews();
+  if(tab==='music')renderPopularSongs();
 }
 
 // History
@@ -238,25 +337,20 @@ function saveCurrentChat(){
   if(messages.length<=1)return;
   const firstUser=messages.find(m=>m.role==='user');
   if(!firstUser)return;
-  const title=firstUser.content.substring(0,40)+'...';
+  const title=firstUser.content.substring(0,38)+'...';
   const chat={id:currentChatId||Date.now(),title,messages:[...messages],date:new Date().toLocaleDateString('en-IN')};
   const idx=chatHistory.findIndex(c=>c.id===chat.id);
   if(idx>=0)chatHistory[idx]=chat;else chatHistory.unshift(chat);
   localStorage.setItem('ai_chetan_history',JSON.stringify(chatHistory.slice(0,50)));
   renderHistory();
 }
-
 function renderHistory(){
   const list=document.getElementById('historyList');
-  if(chatHistory.length===0){list.innerHTML='<div style="padding:16px;color:#aaa;font-size:0.82rem;text-align:center;">No history yet</div>';return;}
+  if(chatHistory.length===0){list.innerHTML='<div style="padding:14px;color:#aaa;font-size:0.8rem;text-align:center;">No history yet</div>';return;}
   list.innerHTML='';
   let lastDate='';
   chatHistory.forEach(chat=>{
-    if(chat.date!==lastDate){
-      const d=document.createElement('div');
-      d.className='history-date';d.textContent=chat.date;
-      list.appendChild(d);lastDate=chat.date;
-    }
+    if(chat.date!==lastDate){const d=document.createElement('div');d.className='history-date';d.textContent=chat.date;list.appendChild(d);lastDate=chat.date;}
     const item=document.createElement('div');
     item.className='history-item'+(chat.id===currentChatId?' active':'');
     item.textContent='💬 '+chat.title;
@@ -264,22 +358,16 @@ function renderHistory(){
     list.appendChild(item);
   });
 }
-
 function loadChat(id){
-  const chat=chatHistory.find(c=>c.id===id);
-  if(!chat)return;
+  const chat=chatHistory.find(c=>c.id===id);if(!chat)return;
   currentChatId=id;messages=[...chat.messages];
-  const container=document.getElementById('chatMessages');
-  container.innerHTML='';
-  messages.forEach(m=>{if(m.role!=='system')addBubble(m.content,m.role==='user'?'user':'ai');});
+  const container=document.getElementById('chatMessages');container.innerHTML='';
+  messages.forEach(m=>{if(m.role!=='system')addBubble(m.content,m.role==='user'?'user':'ai',true);});
   renderHistory();
 }
-
 function newChat(){
-  saveCurrentChat();
-  currentChatId=Date.now();
-  messages=[messages[0]];
-  document.getElementById('chatMessages').innerHTML=`<div class="welcome"><h2>🙏 New Chat!</h2><p>What can I help you with?</p><div class="suggestions"><div class="suggestion" onclick="sendSuggestion('Latest news in India today?')">📰 News</div><div class="suggestion" onclick="sendSuggestion('What are my legal rights?')">⚖️ Legal</div><div class="suggestion" onclick="sendSuggestion('Medicine for headache?')">🏥 Medical</div></div></div>`;
+  saveCurrentChat();currentChatId=Date.now();messages=[messages[0]];
+  document.getElementById('chatMessages').innerHTML=`<div class="welcome"><h2>🙏 New Chat!</h2><p>What can I help you with today?</p><div class="suggestions"><div class="suggestion" onclick="sendSuggestion('I am feeling sad, suggest songs')">🎵 Music</div><div class="suggestion" onclick="sendSuggestion('What are my legal rights?')">⚖️ Legal</div><div class="suggestion" onclick="sendSuggestion('Medicine for headache?')">🏥 Medical</div><div class="suggestion" onclick="sendSuggestion('Give me business ideas')">💡 Business</div></div></div>`;
   renderHistory();
 }
 
@@ -289,24 +377,37 @@ function handleFiles(event){
   Array.from(event.target.files).forEach(file=>{
     attachedFiles.push(file);
     const bar=document.getElementById('filePreviewBar');
-    const chip=document.createElement('div');
-    chip.className='file-chip';chip.id='chip-'+file.name;
+    const chip=document.createElement('div');chip.className='file-chip';chip.id='chip-'+file.name;
     chip.innerHTML=`📎 ${file.name} <button onclick="removeFile('${file.name}')">×</button>`;
     bar.appendChild(chip);
   });
 }
 function removeFile(name){
   attachedFiles=attachedFiles.filter(f=>f.name!==name);
-  const chip=document.getElementById('chip-'+name);
-  if(chip)chip.remove();
+  const chip=document.getElementById('chip-'+name);if(chip)chip.remove();
 }
 async function fileToBase64(file){
-  return new Promise((res,rej)=>{
-    const reader=new FileReader();
-    reader.onload=()=>res(reader.result);
-    reader.onerror=rej;
-    reader.readAsDataURL(file);
-  });
+  return new Promise((res,rej)=>{const reader=new FileReader();reader.onload=()=>res(reader.result);reader.onerror=rej;reader.readAsDataURL(file);});
+}
+
+// DETECT YOUTUBE IN RESPONSE
+function extractYouTubeSearch(text){
+  const match=text.match(/\[YOUTUBE_SEARCH:\s*([^\]]+)\]/);
+  return match?match[1].trim():null;
+}
+function extractBooking(text){
+  const match=text.match(/\[BOOKING:\s*([^|]+)\|([^\]]+)\]/);
+  return match?{service:match[1].trim(),url:match[2].trim()}:null;
+}
+function cleanResponse(text){
+  return text.replace(/\[YOUTUBE_SEARCH:[^\]]+\]/g,'').replace(/\[BOOKING:[^\]]+\]/g,'').trim();
+}
+
+// DETECT MOOD FROM USER TEXT
+function detectMusicIntent(text){
+  const lower=text.toLowerCase();
+  const musicWords=['song','songs','music','play','sing','lonely','sad','happy','romantic','bored','mood','gana','gaana','bajao','suno'];
+  return musicWords.some(w=>lower.includes(w));
 }
 
 // Send
@@ -315,33 +416,20 @@ async function sendMessage(){
   const text=input.value.trim();
   if(!text&&attachedFiles.length===0)return;
   input.value='';autoResize(input);
-
   let userContent=text;
-  let hasImage=false;
-
   if(attachedFiles.length>0){
     const fileNames=attachedFiles.map(f=>f.name).join(', ');
     for(const file of attachedFiles){
       if(file.type.startsWith('image/')){
-        try{
-          const dataUrl=await fileToBase64(file);
-          addBubble(`${text||'Please analyze this image:'}<br><img src="${dataUrl}" style="max-width:220px;border-radius:8px;margin-top:6px;">`, 'user');
-          hasImage=true;
-        }catch(e){addBubble(`📎 ${file.name}`, 'user');}
-      }else{
-        addBubble(`📎 ${file.name}${text?' — '+text:''}`, 'user');
-      }
+        try{const dataUrl=await fileToBase64(file);addBubble(`${text||'Analyze this:'}<br><img src="${dataUrl}" style="max-width:200px;border-radius:8px;margin-top:6px;">`,'user');}
+        catch(e){addBubble(`📎 ${file.name}`,'user');}
+      }else{addBubble(`📎 ${file.name}${text?' — '+text:''}`,'user');}
     }
-    userContent=(text||'Please help with these files:')+`\n[Files attached: ${fileNames}]`;
-    attachedFiles=[];
-    document.getElementById('filePreviewBar').innerHTML='';
-  }else{
-    addBubble(text,'user');
-  }
-
+    userContent=(text||'Help with these files:')+`\n[Files: ${fileNames}]`;
+    attachedFiles=[];document.getElementById('filePreviewBar').innerHTML='';
+  }else{addBubble(text,'user');}
   messages.push({role:'user',content:userContent});
   showTyping();
-
   try{
     const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
       method:'POST',
@@ -349,32 +437,75 @@ async function sendMessage(){
       body:JSON.stringify({model:'llama-3.3-70b-versatile',messages,max_tokens:1500})
     });
     const data=await res.json();
-    const reply=data.choices[0].message.content;
+    const rawReply=data.choices[0].message.content;
+    const ytQuery=extractYouTubeSearch(rawReply);
+    const booking=extractBooking(rawReply);
+    const cleanReply=cleanResponse(rawReply);
     removeTyping();
-    addBubble(reply,'ai');
-    messages.push({role:'assistant',content:reply});
+
+    // Add text bubble
+    addBubble(cleanReply,'ai');
+
+    // Add YouTube card if music detected
+    if(ytQuery||detectMusicIntent(text)){
+      const searchQuery=ytQuery||(text+' songs');
+      addYouTubeCard(searchQuery,cleanReply);
+    }
+
+    // Add booking card
+    if(booking){addBookingCard(booking.service,booking.url);}
+
+    messages.push({role:'assistant',content:rawReply});
     saveCurrentChat();
-    if(voiceOutputEnabled)speakText(reply);
+    if(voiceOutputEnabled)speakText(cleanReply);
   }catch(err){
     removeTyping();
     addBubble('Sorry, something went wrong. Please try again!','ai');
   }
 }
 
+function addYouTubeCard(query,context){
+  const container=document.getElementById('chatMessages');
+  const wrap=document.createElement('div');wrap.className='msg-wrap ai';
+  const avatar=document.createElement('div');avatar.className='avatar ai';avatar.textContent='🎵';
+  const bubble=document.createElement('div');bubble.className='bubble ai';
+  bubble.innerHTML=`<div class="yt-card" onclick="openYouTube('${query.replace(/'/g,"\\'")}')">
+    <div class="yt-icon">▶️</div>
+    <div class="yt-info"><div class="yt-title">▶ Play on YouTube</div><div class="yt-sub">${query}</div></div>
+    <button class="yt-btn">Open YouTube</button>
+  </div>`;
+  wrap.appendChild(avatar);wrap.appendChild(bubble);
+  container.appendChild(wrap);container.scrollTop=container.scrollHeight;
+}
+
+function addBookingCard(service,url){
+  const container=document.getElementById('chatMessages');
+  const wrap=document.createElement('div');wrap.className='msg-wrap ai';
+  const avatar=document.createElement('div');avatar.className='avatar ai';avatar.textContent='🔗';
+  const bubble=document.createElement('div');bubble.className='bubble ai';
+  bubble.innerHTML=`<div class="booking-card" onclick="window.open('${url}','_blank')">
+    <div class="booking-icon">🎫</div>
+    <div class="booking-info"><div class="booking-title">${service}</div><div class="booking-sub">Click to open booking page</div></div>
+    <button class="booking-btn">Book Now</button>
+  </div>`;
+  wrap.appendChild(avatar);wrap.appendChild(bubble);
+  container.appendChild(wrap);container.scrollTop=container.scrollHeight;
+}
+
 function sendSuggestion(text){document.getElementById('userInput').value=text;sendMessage();}
 function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
-function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px';}
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,110)+'px';}
 
-function addBubble(content,role){
+function addBubble(content,role,skipScroll){
   const container=document.getElementById('chatMessages');
   const wrap=document.createElement('div');wrap.className='msg-wrap '+role;
   const avatar=document.createElement('div');avatar.className='avatar '+role;avatar.textContent=role==='ai'?'🤖':'👤';
   const bubble=document.createElement('div');bubble.className='bubble '+role;
   bubble.innerHTML=content.replace(/\n/g,'<br>');
   wrap.appendChild(avatar);wrap.appendChild(bubble);
-  container.appendChild(wrap);container.scrollTop=container.scrollHeight;
+  container.appendChild(wrap);
+  if(!skipScroll)container.scrollTop=container.scrollHeight;
 }
-
 function showTyping(){
   const container=document.getElementById('chatMessages');
   const wrap=document.createElement('div');wrap.className='typing-wrap';wrap.id='typing';
@@ -385,44 +516,35 @@ function removeTyping(){const t=document.getElementById('typing');if(t)t.remove(
 
 // Voice Input
 function startVoiceInput(){
-  if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){
-    document.getElementById('voiceStatus').textContent='❌ Use Chrome for voice!';return;
-  }
+  if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){document.getElementById('voiceStatus').textContent='❌ Use Chrome!';return;}
   document.getElementById('voiceModal').classList.add('show');
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   const recognition=new SR();
-  recognition.lang=selectedLang;
-  recognition.continuous=false;recognition.interimResults=true;
+  recognition.lang=selectedLang;recognition.continuous=false;recognition.interimResults=true;
   recognition.onresult=function(e){
     const text=e.results[0][0].transcript;
     document.getElementById('voiceResult').textContent=text;
-    if(e.results[0].isFinal){
-      document.getElementById('userInput').value=text;
-      closeVoiceModal();sendMessage();
-    }
+    if(e.results[0].isFinal){document.getElementById('userInput').value=text;closeVoiceModal();sendMessage();}
   };
   recognition.onerror=function(){document.getElementById('voiceResult').textContent='❌ Could not hear. Try again!';};
   recognition.onend=function(){closeVoiceModal();};
   recognition.start();
 }
 function closeVoiceModal(){document.getElementById('voiceModal').classList.remove('show');}
-
-// Voice Output
 function toggleVoiceOutput(){
   voiceOutputEnabled=!voiceOutputEnabled;
   const btn=document.getElementById('voiceOutputBtn');
-  btn.textContent=voiceOutputEnabled?'🔊 AI Voice: ON':'🔊 AI Voice: OFF';
+  btn.textContent=voiceOutputEnabled?'🔊 Voice: ON':'🔊 Voice: OFF';
   btn.classList.toggle('active',voiceOutputEnabled);
 }
 function speakText(text){
   if(!voiceOutputEnabled)return;
   window.speechSynthesis.cancel();
-  const clean=text.replace(/<[^>]*>/g,'').substring(0,600);
+  const clean=text.replace(/<[^>]*>/g,'').substring(0,500);
   const utterance=new SpeechSynthesisUtterance(clean);
   utterance.lang=selectedLang;utterance.rate=0.9;
   const voices=window.speechSynthesis.getVoices();
-  const langCode=selectedLang.split('-')[0];
-  const match=voices.find(v=>v.lang.startsWith(langCode));
+  const match=voices.find(v=>v.lang.startsWith(selectedLang.split('-')[0]));
   if(match)utterance.voice=match;
   window.speechSynthesis.speak(utterance);
 }
@@ -432,16 +554,12 @@ async function loadNews(){
   const container=document.getElementById('newsContainer');
   container.innerHTML='<div class="news-loading">🔄 Fetching latest Indian news...</div>';
   try{
-    const topics=['India news today','India business technology news','India health legal news'];
+    const topics=['India news today','India business technology','India health legal news'];
     const results=[];
     for(const topic of topics){
-      const res=await fetch('https://api.tavily.com/search',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({api_key:TAVILY_API_KEY,query:topic,max_results:4,search_depth:'basic'})
-      });
+      const res=await fetch('https://api.tavily.com/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({api_key:TAVILY_API_KEY,query:topic,max_results:4,search_depth:'basic'})});
       const data=await res.json();
-      const label=topic.replace('India ','').replace(' news','').replace('today','General');
+      const label=topic.replace('India ','').replace(' news','').replace('today','').trim();
       if(data.results)results.push(...data.results.map(r=>({...r,topicLabel:label})));
     }
     if(results.length===0)throw new Error('No results');
@@ -452,29 +570,27 @@ async function loadNews(){
       card.onclick=()=>window.open(item.url,'_blank');
       container.appendChild(card);
     });
-  }catch(err){
-    container.innerHTML='<div class="news-loading">❌ Could not load news. Please check your Tavily API key!</div>';
-  }
+  }catch(err){container.innerHTML='<div class="news-loading">❌ Could not load news. Check Tavily API key!</div>';}
 }
 
-// Image Generation
+// Image Gen
 async function generateImage(){
-  const prompt=document.getElementById('imgPrompt').value.trim();
-  if(!prompt)return;
+  const prompt=document.getElementById('imgPrompt').value.trim();if(!prompt)return;
   const grid=document.getElementById('imggenGrid');
   const placeholder=document.createElement('div');placeholder.className='imggen-item';
-  placeholder.innerHTML='<div style="background:#f0f0f0;height:200px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:0.9rem;">🎨 Generating...</div>';
+  placeholder.innerHTML='<div style="background:#f0f0f0;height:180px;display:flex;align-items:center;justify-content:center;color:#aaa;">🎨 Generating...</div>';
   grid.insertBefore(placeholder,grid.firstChild);
   const seed=Math.floor(Math.random()*999999);
   const url=`https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?seed=${seed}&width=512&height=512&nologo=true`;
   const img=new Image();
-  img.onload=function(){placeholder.innerHTML=`<img src="${url}" alt="${prompt}"><div class="imggen-prompt">${prompt}</div>`;};
-  img.onerror=function(){placeholder.innerHTML='<div style="background:#fff0e0;height:200px;display:flex;align-items:center;justify-content:center;color:var(--orange);padding:16px;text-align:center;">❌ Try a different prompt!</div>';};
+  img.onload=function(){placeholder.innerHTML=`<img src="${url}" alt="${prompt}"><div class="imggen-prompt-label">${prompt}</div>`;};
+  img.onerror=function(){placeholder.innerHTML='<div style="background:#fff0e0;height:180px;display:flex;align-items:center;justify-content:center;color:var(--orange);padding:12px;text-align:center;">❌ Try a different prompt!</div>';};
   img.src=url;
 }
 
 // Init
 renderHistory();
+renderPopularSongs();
 window.speechSynthesis.onvoiceschanged=function(){window.speechSynthesis.getVoices();};
 </script>
 </body>
