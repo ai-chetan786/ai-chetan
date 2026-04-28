@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About — AI Chetan</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--orange:#FF6B00;--green:#138808;--dark:#1a1a1a;--light:#FFF8F0;}
+body{font-family:'Poppins',sans-serif;background:var(--light);color:var(--dark);}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;background:white;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:100;}
+.logo{font-family:'Baloo 2',cursive;font-size:1.8rem;font-weight:800;color:var(--orange);text-decoration:none;}
+.logo span{color:var(--green);}
+.nav-links{display:flex;gap:16px;align-items:center;}
+.nav-links a{text-decoration:none;color:#555;font-weight:600;font-size:0.9rem;transition:color 0.2s;}
+.nav-links a:hover{color:var(--orange);}
+.btn-start{background:var(--orange);color:white;padding:8px 22px;border-radius:25px;text-decoration:none;font-weight:600;font-size:0.9rem;}
+
+/* HERO */
+.bio-hero{text-align:center;padding:80px 20px 60px;background:linear-gradient(135deg,#FFF8F0,#FFE8CC);}
+.bio-hero .flag{font-size:3rem;margin-bottom:16px;}
+.bio-hero h1{font-family:'Baloo 2',cursive;font-size:2.8rem;font-weight:800;color:var(--dark);margin-bottom:12px;}
+.bio-hero h1 span{color:var(--orange);}
+.bio-hero p{font-size:1.05rem;color:#555;max-width:600px;margin:0 auto;line-height:1.8;}
+
+/* STORY */
+.section{max-width:900px;margin:0 auto;padding:60px 20px;}
+.section-title{font-family:'Baloo 2',cursive;font-size:2rem;font-weight:800;color:var(--dark);margin-bottom:12px;}
+.section-title span{color:var(--orange);}
+.story-text{color:#555;font-size:0.97rem;line-height:1.9;margin-bottom:20px;}
+
+/* MISSION CARDS */
+.mission-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:32px;}
+.mission-card{background:white;border-radius:18px;padding:26px;border-left:4px solid var(--orange);box-shadow:0 4px 16px rgba(0,0,0,0.07);transition:transform 0.3s;}
+.mission-card:hover{transform:translateY(-4px);}
+.mission-icon{font-size:2rem;margin-bottom:12px;}
+.mission-card h3{font-weight:700;color:var(--dark);margin-bottom:8px;font-size:1rem;}
+.mission-card p{color:#777;font-size:0.88rem;line-height:1.6;}
+
+/* CREATOR */
+.creator-section{background:white;border-radius:24px;padding:40px;max-width:700px;margin:0 auto 60px;box-shadow:0 8px 30px rgba(0,0,0,0.08);text-align:center;}
+.creator-avatar{width:90px;height:90px;background:linear-gradient(135deg,var(--orange),#FF9A00);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.4rem;margin:0 auto 16px;}
+.creator-name{font-family:'Baloo 2',cursive;font-size:1.6rem;font-weight:800;color:var(--dark);}
+.creator-title{color:var(--orange);font-weight:600;font-size:0.9rem;margin-bottom:14px;}
+.creator-bio{color:#666;font-size:0.92rem;line-height:1.8;margin-bottom:20px;}
+.creator-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+.tag{background:var(--light);color:var(--orange);padding:5px 14px;border-radius:20px;font-size:0.8rem;font-weight:600;border:1px solid #FFD0A0;}
+
+/* STATS */
+.stats-section{background:var(--orange);padding:50px 20px;text-align:center;}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px;max-width:700px;margin:0 auto;}
+.stat{color:white;}
+.stat-number{font-family:'Baloo 2',cursive;font-size:2.4rem;font-weight:800;}
+.stat-label{font-size:0.85rem;opacity:0.85;margin-top:4px;}
+
+/* CTA */
+.cta{text-align:center;padding:70px 20px;}
+.cta h2{font-family:'Baloo 2',cursive;font-size:2.2rem;font-weight:800;margin-bottom:12px;}
+.cta h2 span{color:var(--orange);}
+.cta p{color:#666;margin-bottom:28px;font-size:0.97rem;}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:var(--orange);color:white;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:600;font-size:1rem;transition:all 0.3s;box-shadow:0 4px 15px rgba(255,107,0,0.3);}
+.btn-primary:hover{transform:translateY(-2px);}
+.btn-secondary{border:2px solid var(--orange);color:var(--orange);padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:600;font-size:1rem;transition:all 0.3s;}
+.btn-secondary:hover{background:var(--orange);color:white;}
+
+/* FOOTER */
+footer{background:var(--dark);color:white;text-align:center;padding:28px;font-size:0.88rem;}
+footer span{color:var(--orange);}
+
+@media(max-width:768px){
+  .bio-hero h1{font-size:2rem;}
+  nav{padding:14px 20px;}
+  .section{padding:40px 16px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">AI <span>Chetan</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="chat.html">Chat</a>
+    <a href="profile.html">Profile</a>
+    <a href="register.html" class="btn-start">Get Started Free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="bio-hero">
+  <div class="flag">🇮🇳</div>
+  <h1>About <span>AI Chetan</span></h1>
+  <p>India's first all-in-one AI assistant — built to help every Indian with legal, medical, tech, and daily life problems in their own language.</p>
+</div>
+
+<!-- STORY -->
+<div class="section">
+  <h2 class="section-title">Our <span>Story</span></h2>
+  <p class="story-text">AI Chetan was born from a simple idea — every Indian deserves access to smart, affordable help. Whether it's understanding a legal notice, knowing which medicine to take, fixing a phone problem, or just needing someone to talk to at midnight — AI Chetan is here.</p>
+  <p class="story-text">We saw that most AI tools are made for the West, in English only, and are too expensive for the average Indian. So we built something different — something for <strong>Bharat</strong>. Supports Hindi, Tamil, Telugu, Kannada, Malayalam, Marathi, Gujarati, Punjabi, Bengali and more!</p>
+
+  <div class="mission-grid">
+    <div class="mission-card">
+      <div class="mission-icon">⚖️</div>
+      <h3>Legal Help for Everyone</h3>
+      <p>Understand court procedures, consumer rights, tenant laws — explained simply without expensive lawyers.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon">🏥</div>
+      <h3>Medical Guidance</h3>
+      <p>Symptom checker, medicine info, and health tips. Always available, always caring — 24/7.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon">💻</div>
+      <h3>Tech Support</h3>
+      <p>Fix your phone, computer, TV or any device with simple step-by-step guidance in your language.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon">🌐</div>
+      <h3>Your Language</h3>
+      <p>Talk in Hindi, Tamil, Telugu, Kannada or any Indian language. AI Chetan understands you.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon">🎙️</div>
+      <h3>Voice First</h3>
+      <p>Just speak — no typing needed. Designed for users who prefer voice over text.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon">💸</div>
+      <h3>Free Forever</h3>
+      <p>Core features are free for every Indian. No credit card. No hidden charges. Ever.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CREATOR -->
+<div style="padding:0 20px 60px;">
+  <div class="creator-section">
+    <div class="creator-avatar">👨‍💻</div>
+    <div class="creator-name">Chetan</div>
+    <div class="creator-title">Founder & Developer · AI Chetan</div>
+    <p class="creator-bio">A passionate Indian developer on a mission to make AI accessible to every corner of Bharat. Built AI Chetan from scratch — with love, code, and a strong belief that technology should serve people in their own language and on their own terms.</p>
+    <div class="creator-tags">
+      <span class="tag">🇮🇳 Made in India</span>
+      <span class="tag">💻 Full Stack Dev</span>
+      <span class="tag">🤖 AI Builder</span>
+      <span class="tag">🌐 Multi-language</span>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat"><div class="stat-number">5+</div><div class="stat-label">AI Models Powered</div></div>
+    <div class="stat"><div class="stat-number">13+</div><div class="stat-label">Indian Languages</div></div>
+    <div class="stat"><div class="stat-number">6</div><div class="stat-label">Features in One App</div></div>
+    <div class="stat"><div class="stat-number">24/7</div><div class="stat-label">Always Available</div></div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>Ready to Meet <span>AI Chetan?</span></h2>
+  <p>Join thousands of Indians already getting smarter answers every day — for free!</p>
+  <div class="cta-btns">
+    <a href="register.html" class="btn-primary">🚀 Get Started Free</a>
+    <a href="chat.html" class="btn-secondary">💬 Try the Chat</a>
+  </div>
+</div>
+
+<footer>
+  <p>Made with ❤️ in <span>India</span> · AI Chetan © 2025 · All rights reserved</p>
+</footer>
+
+</body>
+</html>
