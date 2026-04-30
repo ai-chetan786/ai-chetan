@@ -337,7 +337,10 @@ async function callAI(modelKey, msgs) {
       body: JSON.stringify({ model: m.model, messages: msgs, max_tokens: 1500 })
     });
     const data = await res.json();
-    if (!data.choices || !data.choices[0]) throw new Error('Groq error');
+    if (!data.choices || !data.choices[0]) {
+      const errMsg = data.error ? data.error.message : JSON.stringify(data);
+      throw new Error('Groq: ' + errMsg);
+    }
     return data.choices[0].message.content;
   } else {
     const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -351,7 +354,10 @@ async function callAI(modelKey, msgs) {
       body: JSON.stringify({ model: m.model, messages: msgs, max_tokens: 1500 })
     });
     const data = await res.json();
-    if (!data.choices || !data.choices[0]) throw new Error('OpenRouter error');
+    if (!data.choices || !data.choices[0]) {
+      const errMsg = data.error ? data.error.message : JSON.stringify(data);
+      throw new Error('OpenRouter: ' + errMsg);
+    }
     return data.choices[0].message.content;
   }
 }
@@ -625,7 +631,7 @@ async function sendMessage() {
       saveCurrentChat();
     } catch(e2) {
       removeTyping();
-      addBubble('❌ Both AI services failed. Please check your API keys and try again!', 'ai', '');
+      addBubble('❌ Both AI services failed.<br><small style="color:#999">Error: ' + e2.message + '</small>', 'ai', '');
     }
   }
 }
