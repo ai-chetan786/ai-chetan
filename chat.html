@@ -19,7 +19,15 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:10px 2
 .nav-right{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
 .lang-select{padding:5px 9px;border:1.5px solid #ddd;border-radius:20px;font-size:0.77rem;font-family:'Poppins',sans-serif;outline:none;cursor:pointer;background:white;}
 .model-badge{background:#f0f0f0;border-radius:20px;padding:4px 10px;font-size:0.72rem;color:#666;font-weight:600;}
-.model-badge span{color:var(--orange);}
+.profile-nav-btn{display:flex;align-items:center;gap:7px;text-decoration:none;color:#444;font-size:0.83rem;font-weight:600;padding:4px 10px;border-radius:20px;border:1.5px solid #eee;transition:all 0.3s;}
+.profile-nav-btn:hover{border-color:var(--orange);color:var(--orange);}
+.profile-nav-avatar{width:28px;height:28px;border-radius:50%;background:var(--orange);color:white;display:flex;align-items:center;justify-content:center;font-size:0.8rem;overflow:hidden;flex-shrink:0;}
+.profile-nav-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+/* WATERMARK */
+.chat-watermark{position:absolute;inset:0;pointer-events:none;z-index:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.chat-watermark img{width:260px;height:260px;object-fit:cover;border-radius:50%;opacity:0.15;}
+.chat-area{position:relative;}
+#chatMessages{position:relative;z-index:1;}
 .user-badge{font-size:0.83rem;font-weight:600;color:#444;}
 .btn-logout{background:none;border:1.5px solid #ddd;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:0.78rem;font-family:'Poppins',sans-serif;transition:all 0.3s;}
 .btn-logout:hover{border-color:var(--orange);color:var(--orange);}
@@ -149,7 +157,10 @@ textarea:focus{border-color:var(--orange);}
       <option value="bho-IN">भोजपुरी</option>
       <option value="raj-IN">राजस्थानी</option>
     </select>
-    <span class="user-badge" id="userName">👤 User</span>
+    <a href="profile.html" class="profile-nav-btn" id="profileNavBtn" title="My Profile">
+      <div class="profile-nav-avatar" id="profileNavAvatar">👤</div>
+      <span id="userName">User</span>
+    </a>
     <button class="btn-logout" onclick="logout()">Logout</button>
   </div>
 </nav>
@@ -162,6 +173,9 @@ textarea:focus{border-color:var(--orange);}
 
   <!-- CHAT -->
   <div class="chat-area" id="panel-chat">
+    <div class="chat-watermark" id="chatWatermark" style="display:none;">
+      <img id="watermarkImg" src="" alt=""/>
+    </div>
     <div class="chat-messages" id="chatMessages">
       <div class="welcome">
         <h2>🙏 Namaste! I'm AI Chetan</h2>
@@ -345,8 +359,29 @@ async function callAI(modelKey, msgs) {
 // ====================================================
 const userData = localStorage.getItem('ai_chetan_user');
 if (!userData) { window.location.href = 'login.html'; }
-else { const u = JSON.parse(userData); document.getElementById('userName').textContent = '👤 ' + u.name; }
+else { const u = JSON.parse(userData); document.getElementById('userName').textContent = u.name; }
 function logout() { localStorage.removeItem('ai_chetan_user'); window.location.href = 'index.html'; }
+
+// ====================================================
+// PROFILE PHOTO + WATERMARK
+// ====================================================
+function initProfilePhoto() {
+  const photo = localStorage.getItem('ai_chetan_photo');
+  const watermarkOn = localStorage.getItem('ai_chetan_watermark') === '1';
+  const opacity = localStorage.getItem('ai_chetan_watermark_opacity') || '0.15';
+  if (photo) {
+    // Show in nav avatar
+    const navAvatar = document.getElementById('profileNavAvatar');
+    if (navAvatar) navAvatar.innerHTML = `<img src="${photo}" alt="profile" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>`;
+    // Show watermark
+    if (watermarkOn) {
+      const wm = document.getElementById('chatWatermark');
+      const wmImg = document.getElementById('watermarkImg');
+      if (wm && wmImg) { wmImg.src = photo; wmImg.style.opacity = opacity; wm.style.display = 'flex'; }
+    }
+  }
+}
+initProfilePhoto();
 
 // ====================================================
 // STATE
