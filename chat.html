@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>AI Chetan — Chat</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
-<script src="config.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{--orange:#FF6B00;--green:#138808;--dark:#1a1a1a;--light:#F5F5F5;--white:#fff;}
@@ -253,8 +252,11 @@ textarea:focus{border-color:var(--orange);}
 
 <script>
 // ====================================================
-// ✅ Keys are loaded from config.js (kept secret!)
-// OPENROUTER_KEY, GROQ_KEY, TAVILY_KEY come from config.js
+// 🔑 API KEYS
+// ====================================================
+const OPENROUTER_KEY = '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';
+const GROQ_KEY       = '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';
+const TAVILY_KEY     = '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';
 // ====================================================
 
 // ====================================================
