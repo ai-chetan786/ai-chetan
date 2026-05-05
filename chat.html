@@ -313,34 +313,26 @@ function selectModel(text) {
 }
 
 // ====================================================
-// CALL AI — ROUTES TO CORRECT PROVIDER
+// CALL AI — ALL THROUGH OPENROUTER (avoids CORS)
 // ====================================================
 async function callAI(modelKey, msgs) {
   const m = MODELS[modelKey];
-  if (m.provider === 'groq') {
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + GROQ_KEY },
-      body: JSON.stringify({ model: m.model, messages: msgs, max_tokens: 1500 })
-    });
-    const data = await res.json();
-    if (!data.choices || !data.choices[0]) throw new Error('Groq error');
-    return data.choices[0].message.content;
-  } else {
-    const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + OPENROUTER_KEY,
-        'HTTP-Referer': 'https://ai-chetan.vercel.app',
-        'X-Title': 'AI Chetan'
-      },
-      body: JSON.stringify({ model: m.model, messages: msgs, max_tokens: 1500 })
-    });
-    const data = await res.json();
-    if (!data.choices || !data.choices[0]) throw new Error('OpenRouter error');
-    return data.choices[0].message.content;
-  }
+  // Use groq via openrouter if groq model, else use openrouter directly
+  const model = m.provider === 'groq' ? 'meta-llama/llama-3.3-70b-instruct:free' : m.model;
+  const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + OPENROUTER_KEY,
+      'HTTP-Referer': 'https://ai-chetan.vercel.app',
+      'X-Title': 'AI Chetan'
+    },
+    body: JSON.stringify({ model: model, messages: msgs, max_tokens: 1500 })
+  });
+  const data = await res.json();
+  if (data.error) throw new Error(data.error.message || 'OpenRouter error');
+  if (!data.choices || !data.choices[0]) throw new Error('No response from AI');
+  return data.choices[0].message.content;
 }
 
 // ====================================================
