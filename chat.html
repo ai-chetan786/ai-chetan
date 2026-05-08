@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>AI Chetan — Chat</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+<script src="config.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{--orange:#FF6B00;--green:#138808;--dark:#1a1a1a;--light:#F5F5F5;--white:#fff;}
@@ -252,11 +253,9 @@ textarea:focus{border-color:var(--orange);}
 
 <script>
 // ====================================================
-// 🔑 API KEYS
-// ====================================================
-const OPENROUTER_KEY = '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';
-const GROQ_KEY       = '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';
-const TAVILY_KEY     = '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';
+// ✅ Keys are safely stored in Vercel Environment Variables
+// This code calls /api/chat and /api/news proxy endpoints
+// NO keys are stored in this file — GitHub safe!
 // ====================================================
 
 // ====================================================
@@ -313,26 +312,24 @@ function selectModel(text) {
 }
 
 // ====================================================
-// CALL AI — ALL THROUGH OPENROUTER (avoids CORS)
+// CALL AI — ROUTES TO CORRECT PROVIDER
 // ====================================================
 async function callAI(modelKey, msgs) {
   const m = MODELS[modelKey];
-  // Use groq via openrouter if groq model, else use openrouter directly
-  const model = m.provider === 'groq' ? 'meta-llama/llama-3.3-70b-instruct:free' : m.model;
-  const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+  // Call our secure Vercel proxy — keys are safely on server!
+  const res = await fetch('/api/chat', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + OPENROUTER_KEY,
-      'HTTP-Referer': 'https://ai-chetan.vercel.app',
-      'X-Title': 'AI Chetan'
-    },
-    body: JSON.stringify({ model: model, messages: msgs, max_tokens: 1500 })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      messages: msgs,
+      model: m.model,
+      provider: m.provider
+    })
   });
   const data = await res.json();
-  if (data.error) throw new Error(data.error.message || 'OpenRouter error');
-  if (!data.choices || !data.choices[0]) throw new Error('No response from AI');
-  return data.choices[0].message.content;
+  if (data.error) throw new Error(data.error);
+  if (!data.reply) throw new Error('No reply from AI');
+  return data.reply;
 }
 
 // ====================================================
@@ -497,10 +494,11 @@ function detectMusicIntent(text) {
 // ====================================================
 async function tavilySearch(query) {
   try {
-    const res = await fetch('https://api.tavily.com/search', {
+    // Use our secure Vercel proxy
+    const res = await fetch('/api/news', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ api_key: TAVILY_KEY, query, max_results: 3, search_depth: 'basic' })
+      body: JSON.stringify({ query, max_results: 3 })
     });
     const data = await res.json();
     if (data.results && data.results.length > 0) {
@@ -667,13 +665,20 @@ async function loadNews() {
   const container = document.getElementById('newsContainer');
   container.innerHTML = '<div class="news-loading">🔄 Fetching real-time news...</div>';
   try {
-    const topics = ['India breaking news today 2026','India business economy today','India technology science health'];
+    const topics = [
+      { q: 'India breaking news today 2026', label: 'Breaking News' },
+      { q: 'India business economy today', label: 'Business' },
+      { q: 'India technology science health', label: 'Tech & Health' }
+    ];
     const results = [];
     for (const t of topics) {
-      const res = await fetch('https://api.tavily.com/search', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({api_key:TAVILY_KEY,query:t,max_results:4,search_depth:'basic'}) });
+      const res = await fetch('/api/news', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: t.q, max_results: 4 })
+      });
       const data = await res.json();
-      const label = t.replace('India ','').replace(' today 2026','').replace(' today','').replace('India','');
-      if (data.results) results.push(...data.results.map(r => ({...r, topicLabel: label})));
+      if (data.results) results.push(...data.results.map(r => ({...r, topicLabel: t.label})));
     }
     if (!results.length) throw new Error('No results');
     container.innerHTML = '';
@@ -683,7 +688,7 @@ async function loadNews() {
       card.onclick = () => window.open(item.url, '_blank');
       container.appendChild(card);
     });
-  } catch(e) { container.innerHTML = '<div class="news-loading">❌ Could not load news. Check Tavily key!</div>'; }
+  } catch(e) { container.innerHTML = '<div class="news-loading">❌ Could not load news!</div>'; }
 }
 
 // ====================================================
